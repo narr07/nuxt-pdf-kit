@@ -1,7 +1,6 @@
 <template>
   <div
     class="npk-viewer"
-    :class="{ 'dark': isDark, 'npk-viewer--dark': isDark }"
     :data-theme="isDark ? 'dark' : 'light'"
   >
     <!-- Loading State -->
@@ -38,7 +37,7 @@
     >
       <!-- Toolbar -->
       <div
-        class="npk-toolbar bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-2 h-12"
+        class="npk-toolbar flex items-center justify-between px-2 h-12 border-b bg-default border-default"
       >
         <!-- Mobile Layout (< 1024px) -->
         <div class="npk-toolbar-mobile items-center justify-between w-full">
@@ -46,7 +45,7 @@
           <UDropdownMenu :items="mobileMenuItems">
             <UButton
               icon="i-heroicons-bars-3"
-              color="neutral"
+              color="primary"
               variant="ghost"
             />
           </UDropdownMenu>
@@ -58,16 +57,18 @@
           >
             <UButton
               icon="i-heroicons-chevron-left"
-              color="neutral"
+              color="primary"
               variant="ghost"
               size="sm"
               :disabled="currentPage <= 1"
               @click="prevPage"
             />
-            <span class="text-sm text-gray-600 dark:text-gray-300 whitespace-nowrap">{{ currentPage }} / {{ pages.length }}</span>
+            <span class="text-sm whitespace-nowrap font-medium text-highlighted">
+              {{ currentPage }} / {{ pages.length }}
+            </span>
             <UButton
               icon="i-heroicons-chevron-right"
-              color="neutral"
+              color="primary"
               variant="ghost"
               size="sm"
               :disabled="currentPage >= pages.length"
@@ -88,6 +89,7 @@
               :is-searching="isSearching"
               :case-sensitive="searchCaseSensitive"
               :whole-words="searchWholeWords"
+              :is-dark="isDark"
               @search="handleSearch"
               @next-match="handleNextMatch"
               @prev-match="handlePrevMatch"
@@ -108,7 +110,7 @@
           >
             <UButton
               :icon="sidebarVisible ? 'i-heroicons-book-open-solid' : 'i-heroicons-book-open'"
-              color="neutral"
+              color="primary"
               variant="ghost"
               :title="t('toggleSidebar')"
               :active="sidebarVisible"
@@ -118,7 +120,7 @@
 
           <div
             v-if="toolbarConfig.sidebar && toolbarConfig.pageNavigation"
-            class="w-px h-6 bg-gray-300 dark:bg-gray-600 mx-1"
+            class="w-px h-6 mx-1 bg-border"
           />
 
           <!-- Page Navigation -->
@@ -129,7 +131,7 @@
             <div class="flex items-center gap-1">
               <UButton
                 icon="i-heroicons-chevron-left"
-                color="neutral"
+                color="primary"
                 variant="ghost"
                 :disabled="currentPage <= 1"
                 :title="t('prevPage')"
@@ -145,10 +147,12 @@
                 @update:model-value="onPageInputUpdate"
                 @keydown.enter="onPageInputEnter"
               />
-              <span class="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap px-1">/ {{ pages.length }}</span>
+              <span class="text-sm whitespace-nowrap px-1 font-medium text-highlighted">
+                / {{ pages.length }}
+              </span>
               <UButton
                 icon="i-heroicons-chevron-right"
-                color="neutral"
+                color="primary"
                 variant="ghost"
                 :disabled="currentPage >= pages.length"
                 :title="t('nextPage')"
@@ -170,6 +174,7 @@
             :is-searching="isSearching"
             :case-sensitive="searchCaseSensitive"
             :whole-words="searchWholeWords"
+            :is-dark="isDark"
             @search="handleSearch"
             @next-match="handleNextMatch"
             @prev-match="handlePrevMatch"
@@ -180,7 +185,7 @@
 
           <div
             v-if="toolbarConfig.search && toolbarConfig.zoom"
-            class="w-px h-6 bg-gray-300 dark:bg-gray-600 mx-1"
+            class="w-px h-6 mx-1 bg-border"
           />
 
           <!-- Zoom Controls -->
@@ -197,6 +202,7 @@
               :container-height="containerHeight"
               :page-width="pageWidth"
               :page-height="pageHeight"
+              :is-dark="isDark"
               @update:scale="handleScaleUpdate"
               @update:zoom-mode="handleZoomModeUpdate"
               @zoom-in="zoomIn"
@@ -206,14 +212,14 @@
 
           <div
             v-if="toolbarConfig.zoom && toolbarConfig.rotate"
-            class="w-px h-6 bg-gray-300 dark:bg-gray-600 mx-1"
+            class="w-px h-6 mx-1 bg-border"
           />
 
           <!-- Rotate -->
           <UButton
             v-if="toolbarConfig.rotate"
             icon="i-heroicons-arrow-path"
-            color="neutral"
+            color="primary"
             variant="ghost"
             :title="t('rotateClockwise')"
             @click="rotateRight"
@@ -226,7 +232,7 @@
           <UButton
             v-if="toolbarConfig.openFile"
             icon="i-heroicons-folder-open"
-            color="neutral"
+            color="primary"
             variant="ghost"
             :title="t('openFile')"
             @click="openFile"
@@ -243,7 +249,7 @@
           <UButton
             v-if="toolbarConfig.print"
             icon="i-heroicons-printer"
-            color="neutral"
+            color="primary"
             variant="ghost"
             :title="t('print')"
             @click="printFile"
@@ -253,7 +259,7 @@
           <UButton
             v-if="toolbarConfig.download"
             icon="i-heroicons-arrow-down-tray"
-            color="neutral"
+            color="primary"
             variant="ghost"
             :title="t('download')"
             @click="downloadFile"
@@ -261,14 +267,14 @@
 
           <div
             v-if="(toolbarConfig.openFile || toolbarConfig.print || toolbarConfig.download) && (toolbarConfig.themeToggle || toolbarConfig.fullscreen || toolbarConfig.moreOptions)"
-            class="w-px h-6 bg-gray-300 dark:bg-gray-600 mx-1"
+            class="w-px h-6 mx-1 bg-border"
           />
 
           <!-- Theme Toggle -->
           <UButton
             v-if="toolbarConfig.themeToggle"
             :icon="isDark ? 'i-heroicons-sun' : 'i-heroicons-moon'"
-            color="neutral"
+            color="primary"
             variant="ghost"
             :title="t('toggleTheme')"
             @click="toggleTheme"
@@ -278,7 +284,7 @@
           <UButton
             v-if="toolbarConfig.fullscreen"
             icon="i-heroicons-arrows-pointing-out"
-            color="neutral"
+            color="primary"
             variant="ghost"
             :title="t('fullscreen')"
             @click="toggleFullscreen"
@@ -291,7 +297,7 @@
           >
             <UButton
               icon="i-heroicons-ellipsis-horizontal"
-              color="neutral"
+              color="primary"
               variant="ghost"
             />
           </UDropdownMenu>
@@ -305,6 +311,7 @@
           :pdf-doc="pdfDoc"
           :current-page="currentPage"
           :is-open="sidebarVisible"
+          :is-dark="isDark"
           @page-change="goToPageAndScroll"
           @close="toggleSidebar"
         />
@@ -348,6 +355,23 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Hidden Print Container -->
+    <div
+      v-if="isPrinting"
+      ref="printContainerRef"
+      class="npk-print-container"
+    >
+      <NuxtPdfPage
+        v-for="pageNum in pages"
+        :key="`print-${pageNum}`"
+        :page-number="pageNum"
+        :doc="pdfDoc"
+        :scale="1.5"
+        :rotation="rotation"
+        class="npk-print-page"
+      />
     </div>
 
     <!-- Document Properties Modal -->
@@ -430,7 +454,7 @@
 <script setup lang="ts">
 import { ref, shallowRef, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useFullscreen, useLocalStorage, onKeyStroke, useDevicePixelRatio, useElementSize, useDebounceFn } from '@vueuse/core'
-import { useRuntimeConfig } from '#app'
+import { useRuntimeConfig, useColorMode } from '#imports'
 import type * as PDFJS from 'pdfjs-dist'
 import { usePdfKitViewMode } from '../composables/usePdfKitViewMode'
 import { usePdfKitSearch } from '../composables/usePdfKitSearch'
@@ -438,6 +462,7 @@ import { usePdfKitZoom, type ZoomLevel } from '../composables/usePdfKitZoom'
 import ToolSearch from './tools/ToolSearch.vue'
 import ToolZoom from './tools/ToolZoom.vue'
 import NuxtPdfThumbnails from './NuxtPdfThumbnails.client.vue'
+import NuxtPdfPage from './NuxtPdfPage.client.vue'
 import { usePdfKitVirtualScroll } from '../composables/usePdfKitVirtualScroll'
 
 // Toolbar options interface
@@ -529,6 +554,8 @@ const pdfDoc = shallowRef<PDFJS.PDFDocumentProxy | null>(null)
 const pages = ref<number[]>([])
 const currentPage = ref(1)
 const rotation = ref(0)
+const isPrinting = ref(false)
+const printContainerRef = ref<HTMLDivElement | null>(null)
 
 // Document Properties Modal
 const showDocumentProperties = ref(false)
@@ -594,9 +621,11 @@ const contentRef = ref<HTMLDivElement | null>(null)
 // VueUse: Fullscreen
 const { isFullscreen, toggle: toggleFullscreenFn } = useFullscreen(containerRef)
 
+// Nuxt Color Mode - sync with global color mode
+const colorMode = useColorMode()
+
 // VueUse: Local Storage for preferences
 const storedSidebarVisible = useLocalStorage('npk-sidebar-visible', false)
-const storedTheme = useLocalStorage<'light' | 'dark'>('npk-theme', props.theme)
 const storedZoomLevel = useLocalStorage('npk-zoom-level', 1.0)
 
 // VueUse: Device Pixel Ratio for HiDPI rendering
@@ -606,7 +635,6 @@ const { pixelRatio: _pixelRatio } = useDevicePixelRatio()
 const { width: containerWidth, height: containerHeight } = useElementSize(containerRef)
 
 // UI State with persistence
-const internalTheme = ref<'light' | 'dark'>(storedTheme.value)
 const sidebarVisible = ref(storedSidebarVisible.value)
 const menuVisible = ref(false)
 
@@ -691,7 +719,7 @@ const t = (key: string) => {
 }
 
 // Computed
-const isDark = computed(() => internalTheme.value === 'dark')
+const isDark = computed(() => colorMode.value === 'dark')
 
 // Page dimensions (default A4 page: 612 x 792 points)
 const pageWidth = ref(612)
@@ -826,6 +854,7 @@ const moreOptionsItems = computed(() => [
     {
       label: 'Single page',
       icon: 'i-heroicons-square-2-stack',
+      color: 'primary',
       type: 'checkbox' as const,
       checked: viewMode.value === 'single',
       onSelect: (e: Event) => {
@@ -836,6 +865,7 @@ const moreOptionsItems = computed(() => [
     {
       label: 'Dual page',
       icon: 'i-heroicons-squares-2x2',
+      color: 'primary',
       type: 'checkbox' as const,
       checked: viewMode.value === 'dual',
       onSelect: (e: Event) => {
@@ -848,6 +878,7 @@ const moreOptionsItems = computed(() => [
     {
       label: 'Vertical scrolling',
       icon: 'i-heroicons-arrows-up-down',
+      color: 'primary',
       type: 'checkbox' as const,
       checked: scrollMode.value === 'vertical',
       onSelect: (e: Event) => {
@@ -858,6 +889,7 @@ const moreOptionsItems = computed(() => [
     {
       label: 'Horizontal scrolling',
       icon: 'i-heroicons-arrows-right-left',
+      color: 'primary',
       type: 'checkbox' as const,
       checked: scrollMode.value === 'horizontal',
       onSelect: (e: Event) => {
@@ -868,6 +900,7 @@ const moreOptionsItems = computed(() => [
     {
       label: 'Wrapped scrolling',
       icon: 'i-heroicons-squares-2x2',
+      color: 'primary',
       type: 'checkbox' as const,
       checked: scrollMode.value === 'wrapped',
       onSelect: (e: Event) => {
@@ -880,11 +913,13 @@ const moreOptionsItems = computed(() => [
     {
       label: 'Rotate counterclockwise',
       icon: 'i-heroicons-arrow-uturn-left',
+      color: 'primary',
       onSelect: () => handleMenuAction('rotate-ccw'),
     },
     {
       label: 'Document properties',
       icon: 'i-heroicons-information-circle',
+      color: 'primary',
       onSelect: () => handleMenuAction('document-properties'),
     },
   ],
@@ -1215,8 +1250,33 @@ const downloadFile = () => {
   document.body.removeChild(link)
 }
 
-const printFile = () => {
+const printFile = async () => {
+  if (!pdfDoc.value || pages.value.length === 0) return
+
+  // Show print container and render all pages
+  isPrinting.value = true
+
+  // Wait for Vue to render print container
+  await nextTick()
+
+  // Wait for all pages to render (give time for canvas rendering)
+  const waitForRender = () => {
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        resolve()
+      }, pages.value.length * 100 + 500) // Adjust timing based on page count
+    })
+  }
+
+  await waitForRender()
+
+  // Trigger print
   window.print()
+
+  // Hide print container after print dialog closes
+  setTimeout(() => {
+    isPrinting.value = false
+  }, 1000)
 }
 
 // Use VueUse fullscreen
@@ -1228,8 +1288,7 @@ const toggleSidebar = () => {
 }
 
 const toggleTheme = () => {
-  internalTheme.value = internalTheme.value === 'dark' ? 'light' : 'dark'
-  storedTheme.value = internalTheme.value
+  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
 }
 
 const handleMenuAction = (action: string) => {
@@ -1465,12 +1524,7 @@ watch(() => props.src, (newSrc) => {
   height: 100%;
   font-family: system-ui, sans-serif;
   overflow: hidden;
-  background-color: rgb(249 250 251);
-}
-
-.npk-viewer.dark,
-.npk-viewer--dark {
-  background-color: rgb(17 24 39);
+  background-color: var(--ui-bg);
 }
 
 .npk-container {
@@ -1512,12 +1566,7 @@ watch(() => props.src, (newSrc) => {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background-color: rgb(243 244 246);
-}
-
-.npk-viewer.dark .npk-content,
-.npk-viewer--dark .npk-content {
-  background-color: rgb(17 24 39);
+  background-color: var(--ui-bg-muted);
 }
 
 .npk-pages {
@@ -1610,5 +1659,71 @@ watch(() => props.src, (newSrc) => {
 .npk-content--virtual .npk-pages {
   position: relative;
   will-change: transform;
+}
+
+/* Dropdown Menu Icons - Use Primary Color */
+.npk-viewer :deep([role="menuitemcheckbox"] .iconify),
+.npk-viewer :deep([role="menuitem"] .iconify) {
+  color: var(--ui-primary) !important;
+}
+
+.npk-viewer :deep([role="menuitemcheckbox"]:hover .iconify),
+.npk-viewer :deep([role="menuitem"]:hover .iconify) {
+  color: var(--ui-primary) !important;
+}
+
+/* Print Container - Hidden on screen */
+.npk-print-container {
+  display: none;
+}
+
+.npk-print-page {
+  page-break-after: always;
+  margin: 0;
+  padding: 0;
+}
+
+.npk-print-page:last-child {
+  page-break-after: auto;
+}
+
+/* Print Styles */
+@media print {
+  /* Hide everything except print container */
+  body * {
+    visibility: hidden;
+  }
+
+  .npk-print-container,
+  .npk-print-container * {
+    visibility: visible;
+  }
+
+  .npk-print-container {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  .npk-print-page {
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: none !important;
+  }
+
+  /* Hide viewer UI during print */
+  .npk-viewer .npk-toolbar,
+  .npk-viewer .npk-main,
+  .npk-viewer .npk-container {
+    display: none !important;
+  }
+
+  /* Ensure overflow is visible */
+  html, body {
+    overflow: visible !important;
+    height: auto !important;
+  }
 }
 </style>

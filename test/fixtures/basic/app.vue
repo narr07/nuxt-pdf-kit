@@ -9,7 +9,7 @@
       id="pdf-container"
       style="height: 600px;"
     >
-      <NuxtPdfViewer
+      <NuxtPdfKit
         src="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf"
         title="Test Document"
         author="Test Author"

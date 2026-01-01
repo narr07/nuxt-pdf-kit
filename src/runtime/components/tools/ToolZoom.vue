@@ -3,7 +3,7 @@
     <!-- Zoom Out -->
     <UButton
       icon="i-heroicons-minus"
-      color="neutral"
+      color="primary"
       variant="ghost"
       size="sm"
       :title="t('zoomOut')"
@@ -17,7 +17,7 @@
       @update:open="isDropdownOpen = $event"
     >
       <UButton
-        color="neutral"
+        color="primary"
         variant="ghost"
         size="sm"
         class="min-w-[100px] justify-between px-2"
@@ -48,11 +48,11 @@
       <template #content>
         <div class="p-1 min-w-[160px]">
           <!-- Special Modes -->
-          <div class="border-b border-gray-200 dark:border-gray-700 pb-1 mb-1">
+          <div class="border-b border-gray-200 pb-1 mb-1">
             <button
               v-for="mode in specialModes"
               :key="mode.value"
-              class="w-full flex items-center gap-2 px-2 py-1.5 text-sm rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              class="w-full flex items-center gap-2 px-2 py-1.5 text-sm rounded hover:bg-gray-100 transition-colors"
               @click="handleSelectMode(mode.value)"
             >
               <UIcon
@@ -73,7 +73,7 @@
             <button
               v-for="preset in presets"
               :key="preset"
-              class="w-full flex items-center gap-2 px-2 py-1.5 text-sm rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              class="w-full flex items-center gap-2 px-2 py-1.5 text-sm rounded hover:bg-gray-100 transition-colors"
               @click="handleSelectPreset(preset)"
             >
               <UIcon
@@ -95,7 +95,7 @@
     <!-- Zoom In -->
     <UButton
       icon="i-heroicons-plus"
-      color="neutral"
+      color="primary"
       variant="ghost"
       size="sm"
       :title="t('zoomIn')"
@@ -120,6 +120,7 @@ interface Props {
   containerHeight?: number
   pageWidth?: number
   pageHeight?: number
+  isDark?: boolean
 }
 
 interface Emits {
@@ -137,6 +138,7 @@ const props = withDefaults(defineProps<Props>(), {
   containerHeight: 600,
   pageWidth: 612,
   pageHeight: 792,
+  isDark: false,
 })
 
 const emit = defineEmits<Emits>()

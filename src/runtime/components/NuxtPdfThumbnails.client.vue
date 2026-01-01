@@ -5,22 +5,22 @@
   >
     <div
       v-if="isOpen"
-      class="flex flex-col h-full bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 shadow-xl"
+      class="flex flex-col h-full shadow-xl bg-default border-default"
     >
       <!-- Header -->
-      <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800">
+      <div class="flex items-center justify-between px-4 py-3 border-b border-default">
         <div class="flex items-center gap-2">
           <UIcon
             name="i-heroicons-squares-2x2"
             class="w-5 h-5 text-primary"
           />
-          <h3 class="text-sm font-semibold text-gray-900 dark:text-white">
+          <h3 class="text-sm font-semibold text-highlighted">
             Thumbnails
           </h3>
         </div>
         <UButton
           icon="i-heroicons-x-mark"
-          color="neutral"
+          color="primary"
           variant="ghost"
           size="sm"
           @click="$emit('close')"
@@ -30,7 +30,7 @@
       <!-- Thumbnail List -->
       <div
         ref="listRef"
-        class="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-gray-800"
+        class="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-[var(--ui-border-accented)]"
       >
         <div
           v-for="pageNum in pages"
@@ -40,7 +40,7 @@
           :data-page="pageNum"
           @click="$emit('page-change', pageNum)"
         >
-          <div class="npk-thumbnail-box">
+          <div class="npk-thumbnail-box bg-elevated border border-default">
             <canvas
               :ref="el => setCanvasRef(el, pageNum)"
               class="npk-thumbnail-canvas"
@@ -54,7 +54,7 @@
             </div>
           </div>
           <div
-            class="npk-thumbnail-page-num"
+            class="npk-thumbnail-page-num text-muted"
             :class="{ 'text-primary font-bold': pageNum === currentPage }"
           >
             {{ pageNum }}
@@ -73,6 +73,7 @@ interface Props {
   pdfDoc: PDFDocumentProxy | null
   currentPage?: number
   isOpen?: boolean
+  isDark?: boolean
   thumbnailWidth?: number
 }
 
@@ -84,6 +85,7 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   currentPage: 1,
   isOpen: false,
+  isDark: false,
   thumbnailWidth: 150,
 })
 
@@ -289,18 +291,10 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: center;
   padding: 0.5rem;
-  background-color: white;
-  border-width: 1px;
-  border-color: rgb(229 231 235);
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   overflow: hidden;
   transition: all 200ms;
-}
-
-.dark .npk-thumbnail-box {
-  background-color: rgb(31 41 55);
-  border-color: rgb(55 65 81);
 }
 
 .npk-thumbnail-item--active .npk-thumbnail-box {
@@ -335,13 +329,8 @@ onBeforeUnmount(() => {
   text-align: center;
   font-size: 0.75rem;
   line-height: 1rem;
-  color: rgb(107 114 128);
   font-weight: 500;
   transition: color 200ms;
-}
-
-.dark .npk-thumbnail-page-num {
-  color: rgb(156 163 175);
 }
 
 .npk-thumbnail-item:hover .npk-thumbnail-page-num {

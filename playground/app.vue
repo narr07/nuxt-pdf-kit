@@ -19,7 +19,7 @@
 
     <!-- PDF Viewer -->
     <div style="flex: 1; overflow: hidden;">
-      <NuxtPdfViewer
+      <NuxtPdfKit
         :src="bukuTerpilih.fileUrl"
         :title="bukuTerpilih.judul"
         :author="bukuTerpilih.penulis"

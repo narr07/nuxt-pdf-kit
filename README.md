@@ -61,7 +61,7 @@ export default defineNuxtConfig({
 
 ```vue
 <template>
-  <NuxtPdfViewer src="/sample.pdf" />
+  <NuxtPdfKit src="/sample.pdf" />
 </template>
 ```
 
@@ -69,7 +69,7 @@ export default defineNuxtConfig({
 
 ```vue
 <template>
-  <NuxtPdfViewer
+  <NuxtPdfKit
     src="/document.pdf"
     theme="dark"
     :responsive="true"
@@ -83,7 +83,7 @@ export default defineNuxtConfig({
 
 ```vue
 <template>
-  <NuxtPdfViewer ref="pdfViewer" src="/document.pdf" />
+  <NuxtPdfKit ref="pdfViewer" src="/document.pdf" />
   <button @click="pdfViewer?.goToPage(5)">Go to Page 5</button>
 </template>
 

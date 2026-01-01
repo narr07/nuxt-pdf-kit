@@ -22,7 +22,7 @@
 
 /* Custom Selection */
 .textLayer ::selection {
-  background: rgba(0, 0, 255, 0.2);
+  background: color-mix(in srgb, var(--ui-primary) 25%, transparent);
 }
 
 /* Annotation Layer */
@@ -40,4 +40,10 @@
   background: white;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   margin-bottom: 24px;
+}
+
+/* Dropdown Menu Icons - Primary Color */
+[role="menuitemcheckbox"] .iconify,
+[role="menuitem"] .iconify {
+  color: var(--ui-primary) !important;
 }

@@ -97,35 +97,22 @@ onMounted(() => {
 }
 
 .npk-thumbnail:hover {
-  background-color: rgb(243 244 246);
-}
-
-.dark .npk-thumbnail:hover {
-  background-color: rgb(31 41 55);
+  background-color: color-mix(in srgb, var(--ui-primary) 10%, transparent);
 }
 
 .npk-thumbnail--active {
   border-color: var(--ui-primary);
-  background-color: rgb(243 244 246);
-}
-
-.dark .npk-thumbnail--active {
-  background-color: rgb(31 41 55);
+  background-color: color-mix(in srgb, var(--ui-primary) 15%, transparent);
 }
 
 .npk-thumbnail__preview {
   position: relative;
-  background-color: white;
+  background-color: var(--ui-bg);
   border-width: 1px;
-  border-color: rgb(229 231 235);
+  border-color: var(--ui-border);
   border-radius: 0.25rem;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   overflow: hidden;
-}
-
-.dark .npk-thumbnail__preview {
-  background-color: rgb(55 65 81);
-  border-color: rgb(75 85 99);
 }
 
 .npk-thumbnail__canvas {
@@ -139,10 +126,11 @@ onMounted(() => {
   text-align: center;
   font-size: 0.75rem;
   line-height: 1rem;
-  color: rgb(107 114 128);
+  color: var(--ui-text-muted);
 }
 
-.dark .npk-thumbnail__label {
-  color: rgb(156 163 175);
+.npk-thumbnail--active .npk-thumbnail__label {
+  color: var(--ui-primary);
+  font-weight: 500;
 }
 </style>

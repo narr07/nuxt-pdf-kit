@@ -18,7 +18,7 @@ describe('nuxt-pdf-kit module', async () => {
       expect(html).toContain('id="pdf-container"')
     })
 
-    it('has NuxtPdfViewer component placeholder (client-only)', async () => {
+    it('has NuxtPdfKit component placeholder (client-only)', async () => {
       const html = await $fetch('/')
       // Client components render as placeholders in SSR
       expect(html).toBeDefined()

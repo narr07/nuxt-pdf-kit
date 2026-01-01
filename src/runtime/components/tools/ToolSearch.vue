@@ -1,15 +1,17 @@
 <template>
-  <UPopover :content="{ side: 'bottom', align: 'center', sideOffset: 8 }">
+  <UPopover
+    v-model:open="isPopoverOpen"
+    :content="{ side: 'bottom', align: 'center', sideOffset: 8 }">
     <!-- Trigger Button -->
     <UButton
       icon="i-heroicons-magnifying-glass"
-      color="neutral"
+      color="primary"
       variant="ghost"
       :title="t('search')"
     />
 
     <!-- Search Panel Content -->
-    <template #content="{ close }">
+    <template #content>
       <div class="flex items-center gap-1 p-2 min-w-[320px]">
         <!-- Search Input -->
         <UInput
@@ -24,19 +26,19 @@
         <!-- Search Button -->
         <UButton
           icon="i-heroicons-magnifying-glass"
-          color="neutral"
+          color="primary"
           variant="ghost"
           size="sm"
           :title="t('search')"
           @click="handleSearch"
         />
 
-        <div class="w-px h-5 bg-gray-300 dark:bg-gray-600" />
+        <div class="w-px h-5 bg-gray-300" />
 
         <!-- Navigation Prev/Next -->
         <UButton
           icon="i-heroicons-chevron-left"
-          color="neutral"
+          color="primary"
           variant="ghost"
           size="sm"
           :disabled="!hasMatches"
@@ -45,7 +47,7 @@
         />
         <UButton
           icon="i-heroicons-chevron-right"
-          color="neutral"
+          color="primary"
           variant="ghost"
           size="sm"
           :disabled="!hasMatches"
@@ -53,13 +55,13 @@
           @click="handleNextMatch"
         />
 
-        <div class="w-px h-5 bg-gray-300 dark:bg-gray-600" />
+        <div class="w-px h-5 bg-gray-300" />
 
         <!-- Options Popover (nested) -->
         <UPopover :content="{ side: 'bottom', align: 'end', sideOffset: 8 }">
           <UButton
             icon="i-heroicons-adjustments-horizontal"
-            color="neutral"
+            color="primary"
             variant="ghost"
             size="sm"
             :title="t('searchOptions')"
@@ -67,7 +69,7 @@
 
           <template #content>
             <div class="p-3 space-y-2 min-w-[180px]">
-              <div class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">
+              <div class="text-xs font-medium text-gray-500 mb-2">
                 {{ t('searchOptions') }}
               </div>
               <UCheckbox
@@ -87,11 +89,11 @@
         <!-- Close Button -->
         <UButton
           icon="i-heroicons-x-mark"
-          color="neutral"
+          color="primary"
           variant="ghost"
           size="sm"
           :title="t('close')"
-          @click="handleClose(close)"
+          @click="handleClose"
         />
       </div>
 
@@ -99,7 +101,7 @@
       <div
         v-if="localSearchQuery"
         class="px-3 pb-2 text-xs"
-        :class="hasMatches ? 'text-gray-500 dark:text-gray-400' : 'text-red-500'"
+        :class="hasMatches ? 'text-gray-500' : 'text-red-500'"
       >
         <template v-if="isSearching">
           {{ t('searching') }}
@@ -126,6 +128,7 @@ interface Props {
   isSearching?: boolean
   caseSensitive?: boolean
   wholeWords?: boolean
+  isDark?: boolean
 }
 
 interface Emits {
@@ -141,11 +144,13 @@ const props = withDefaults(defineProps<Props>(), {
   isSearching: false,
   caseSensitive: false,
   wholeWords: false,
+  isDark: false,
 })
 
 const emit = defineEmits<Emits>()
 
 const localSearchQuery = ref(props.searchQuery)
+const isPopoverOpen = ref(false)
 
 // Translations
 const t = (key: string) => {
@@ -201,10 +206,10 @@ const handleToggleWholeWords = () => {
   }
 }
 
-const handleClose = (closeFn: () => void) => {
+const handleClose = () => {
   emit('clear')
   localSearchQuery.value = ''
-  closeFn()
+  isPopoverOpen.value = false
 }
 </script>
 

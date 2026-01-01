@@ -101,21 +101,21 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Add components with client-only mode for SSR support
     addComponent({
-      name: 'NuxtPdfViewer',
+      name: 'NuxtPdfKit',
       filePath: resolver.resolve('./runtime/components/NuxtPdfViewer.client.vue'),
       mode: 'client',
     })
     addComponent({
-      name: 'NuxtPdfPage',
+      name: 'NuxtPdfKitPage',
       filePath: resolver.resolve('./runtime/components/NuxtPdfPage.client.vue'),
       mode: 'client',
     })
     addComponent({
-      name: 'NuxtPdfThumbnail',
+      name: 'NuxtPdfKitThumbnail',
       filePath: resolver.resolve('./runtime/components/NuxtPdfThumbnail.vue'),
     })
     addComponent({
-      name: 'NuxtPdfThumbnails',
+      name: 'NuxtPdfKitThumbnails',
       filePath: resolver.resolve('./runtime/components/NuxtPdfThumbnails.client.vue'),
       mode: 'client',
     })

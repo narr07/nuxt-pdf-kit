@@ -215,7 +215,7 @@ defineExpose({ render })
 }
 
 .npk-layer-text .npk-text-span::selection {
-  background: rgba(0, 100, 255, 0.4);
+  background: color-mix(in srgb, var(--ui-primary) 40%, transparent);
 }
 
 .npk-layer-text .npk-highlight {
@@ -233,6 +233,6 @@ defineExpose({ render })
 }
 
 .npk-layer-text .npk-highlight::selection {
-  background: rgba(0, 100, 255, 0.6);
+  background: color-mix(in srgb, var(--ui-primary) 60%, transparent);
 }
 </style>
