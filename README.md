@@ -15,7 +15,7 @@ A feature-rich PDF viewer module for Nuxt with a premium UI built on **Nuxt UI v
 
 Building a PDF viewer in Nuxt requires dealing with PDF.js complexity, SSR issues, and creating a good UI from scratch. **Nuxt PDF Kit** provides:
 
-- 🎨 **Premium UI** - Beautiful, responsive interface with dark/light mode
+- 🎨 **Beautiful UI** - Beautiful, responsive interface with dark/light mode
 - ⚡ **SSR Compatible** - Works out of the box with Nuxt's server-side rendering
 - 🔧 **Zero Config** - Auto-installs dependencies (@nuxt/ui, @vueuse/nuxt)
 - 📱 **Responsive** - Mobile-friendly with adaptive toolbar
