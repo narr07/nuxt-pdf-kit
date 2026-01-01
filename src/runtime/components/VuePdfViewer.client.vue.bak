@@ -1,0 +1,605 @@
+<template>
+  <div class="vue-pdf-viewer" :class="{ 'dark-theme': isDark }" :style="cssVars">
+    <div v-if="loading" class="loading-state">
+      <slot name="loader">
+        <slot name="loader-image">
+          <div class="spinner"></div>
+        </slot>
+        <slot name="loader-progress">
+          <span>Loading Document...</span>
+        </slot>
+      </slot>
+    </div>
+
+    <div v-else-if="error" class="error-state">
+      <span class="icon">⚠️</span>
+      {{ error }}
+    </div>
+
+    <div v-else class="pdf-container" ref="containerRef">
+      <!-- Top Toolbar -->
+      <div class="pdf-toolbar">
+        <!-- Left Section: Navigation & Sidebar -->
+        <div class="toolbar-section left">
+          <slot name="thumbnail-tool">
+            <button title="Toggle Sidebar" @click="toggleSidebar">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <line x1="9" y1="3" x2="9" y2="21" />
+              </svg>
+            </button>
+          </slot>
+
+          <div class="divider"></div>
+
+          <slot name="page-navigation-tool" :current-page="currentPage" :total-pages="pages.length"
+            :next-page="nextPage" :prev-page="prevPage">
+            <div class="group">
+              <button @click="prevPage" :disabled="currentPage <= 1" title="Previous Page">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <span class="page-info">{{ currentPage }} / {{ pages.length }}</span>
+              <button @click="nextPage" :disabled="currentPage >= pages.length" title="Next Page">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+          </slot>
+        </div>
+
+        <!-- Center Section: Zoom & Rotation -->
+        <div class="toolbar-section center">
+          <slot name="zoom-tool" :scale="scale" :zoom-in="zoomIn" :zoom-out="zoomOut">
+            <div class="group">
+              <button @click="zoomOut" title="Zoom Out">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  <line x1="8" y1="11" x2="14" y2="11" />
+                </svg>
+              </button>
+              <span class="zoom-info">{{ Math.round(scale * 100) }}%</span>
+              <button @click="zoomIn" title="Zoom In">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  <line x1="11" y1="8" x2="11" y2="14" />
+                  <line x1="8" y1="11" x2="14" y2="11" />
+                </svg>
+              </button>
+            </div>
+          </slot>
+
+          <div class="divider"></div>
+
+          <slot name="rotate-tool" :rotate-right="rotateRight">
+            <div class="group">
+              <button @click="rotateRight" title="Rotate">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M23 4v6h-6" />
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                </svg>
+              </button>
+            </div>
+          </slot>
+        </div>
+
+        <!-- Right Section: Actions -->
+        <div class="toolbar-section right">
+          <slot name="open-file-tool">
+            <button title="Open File" @click="openFile">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                <polyline points="13 2 13 9 20 9"></polyline>
+              </svg>
+            </button>
+            <input type="file" ref="fileInput" accept=".pdf" style="display: none" @change="onFileChange" />
+          </slot>
+
+          <slot name="print-tool">
+            <button title="Print" @click="printFile">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+              </svg>
+            </button>
+          </slot>
+
+          <slot name="download-tool">
+            <button title="Download" @click="downloadFile">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </button>
+          </slot>
+
+          <div class="divider"></div>
+
+          <slot name="theme-tool">
+            <button title="Toggle Theme" @click="toggleTheme">
+              <svg v-if="isDark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+              <svg v-else width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
+          </slot>
+
+          <slot name="full-screen-tool">
+            <button title="Full Screen" @click="toggleFullscreen">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+              </svg>
+            </button>
+          </slot>
+        </div>
+      </div>
+
+      <!-- Main Content with Sidebar -->
+      <div class="pdf-main">
+        <!-- Sidebar -->
+        <transition name="slide">
+          <div v-if="sidebarVisible" class="pdf-sidebar">
+            <div class="sidebar-header">
+              <h3>Thumbnails</h3>
+              <button @click="toggleSidebar" class="close-btn">×</button>
+            </div>
+            <div class="sidebar-content">
+              <div v-for="pageNum in pages" :key="pageNum" class="thumbnail-item"
+                :class="{ active: pageNum === currentPage }" @click="currentPage = pageNum">
+                <div class="thumbnail-preview">
+                  <span class="page-placeholder">{{ pageNum }}</span>
+                </div>
+                <span class="thumbnail-label">Page {{ pageNum }}</span>
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- Content -->
+        <div class="pdf-content" :class="{ 'with-sidebar': sidebarVisible }">
+          <slot name="drop-file-zone"></slot>
+          <div class="pdf-page-wrapper">
+            <PdfPage v-if="pdfDoc" :page-number="currentPage" :doc="pdfDoc" :scale="scale" :rotation="rotation" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, shallowRef, watch, onMounted, computed } from 'vue'
+import type * as PDFJS from 'pdfjs-dist'
+
+// Props
+interface Props {
+  src: string
+  theme?: 'light' | 'dark'
+}
+const props = withDefaults(defineProps<Props>(), {
+  theme: 'light'
+})
+
+// Internal theme state (can override prop)
+const internalTheme = ref<'light' | 'dark'>(props.theme)
+
+// CSS Vars Helper
+const cssVars = computed(() => {
+  return {}
+})
+
+const isDark = computed(() => internalTheme.value === 'dark')
+
+// Sidebar state
+const sidebarVisible = ref(false)
+
+// State
+const loading = ref(true)
+const error = ref<string | null>(null)
+// Use shallowRef to avoid Proxying the PDF document object which breaks private field access
+const pdfDoc = shallowRef<any>(null)
+const pages = ref<number[]>([])
+const currentPage = ref(1)
+const scale = ref(1.0)
+const rotation = ref(0) // 0, 90, 180, 270
+
+// Hold the library reference
+let pdfjsLib: typeof PDFJS | null = null
+
+const loadPdf = async (url: string) => {
+  if (!pdfjsLib) return
+
+  loading.value = true
+  error.value = null
+  try {
+    const loadingTask = pdfjsLib.getDocument(url)
+    const doc = await loadingTask.promise
+    pdfDoc.value = doc
+
+    pages.value = Array.from({ length: doc.numPages }, (_, i) => i + 1)
+  } catch (err: any) {
+    console.error('Error loading PDF:', err)
+    error.value = err.message || 'Failed to load PDF'
+  } finally {
+    loading.value = false
+  }
+}
+
+// File Input Ref
+const fileInput = ref<HTMLInputElement | null>(null)
+const containerRef = ref<HTMLDivElement | null>(null)
+
+// Actions
+const prevPage = () => { if (currentPage.value > 1) currentPage.value-- }
+const nextPage = () => { if (currentPage.value < pages.value.length) currentPage.value++ }
+
+const zoomIn = () => { scale.value = Math.min(5.0, scale.value + 0.1) }
+const zoomOut = () => { scale.value = Math.max(0.2, scale.value - 0.1) }
+const rotateRight = () => { rotation.value = (rotation.value + 90) % 360 }
+
+// Tool Implementations
+const openFile = () => {
+  fileInput.value?.click()
+}
+
+const onFileChange = (e: Event) => {
+  const files = (e.target as HTMLInputElement).files
+  if (files && files[0]) {
+    const fileUrl = URL.createObjectURL(files[0])
+    loadPdf(fileUrl)
+  }
+}
+
+const downloadFile = () => {
+  if (!props.src) return
+  const link = document.createElement('a')
+  link.href = props.src
+  link.download = props.src.split('/').pop() || 'document.pdf'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
+
+const printFile = () => {
+  window.print()
+}
+
+const toggleFullscreen = () => {
+  if (!document.fullscreenElement) {
+    containerRef.value?.requestFullscreen().catch(err => {
+      console.error(`Error attempting to enable fullscreen mode: ${err.message}`);
+    });
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+// Sidebar toggle
+const toggleSidebar = () => {
+  sidebarVisible.value = !sidebarVisible.value
+}
+
+// Theme toggle
+const toggleTheme = () => {
+  internalTheme.value = internalTheme.value === 'dark' ? 'light' : 'dark'
+}
+
+watch(() => props.src, (newSrc) => {
+  if (newSrc && pdfjsLib) {
+    currentPage.value = 1
+    loadPdf(newSrc)
+  }
+}, { immediate: false })
+
+onMounted(async () => {
+  try {
+    // Dynamic import to avoid SSR DOMMatrix error
+    const lib = await import('pdfjs-dist')
+    pdfjsLib = lib
+
+    // Setup worker using unpkg (more reliable for latest versions)
+    if (typeof window !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`
+    }
+
+    if (props.src) {
+      loadPdf(props.src)
+    }
+  } catch (e) {
+    console.error('Failed to load pdfjs-dist', e)
+    error.value = 'Failed to initialize PDF library'
+  }
+})
+
+</script>
+
+<style scoped>
+@import '../assets/base.css';
+
+.vue-pdf-viewer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--npk-pages-container-background, #f3f4f6);
+  font-family: var(--npk-font-family, sans-serif);
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+/* Loading & Error States */
+.loading-state,
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--npk-secondary-color, #6b7280);
+  gap: 12px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--npk-base-border-color, #e5e7eb);
+  border-top-color: var(--npk-primary-color, #3b82f6);
+  border-radius: 50%;
+  animation: var(--npk-loader-animation-name, spin) 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* PDF Container */
+.pdf-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Toolbar */
+.pdf-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 56px;
+
+  background: var(--npk-toolbar-background-color, #ffffff);
+  border-bottom: 1px solid var(--npk-toolbar-border-color, #e5e7eb);
+  color: var(--npk-toolbar-color, #1c2024);
+
+  position: relative;
+  z-index: 50;
+}
+
+.toolbar-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toolbar-section.center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--npk-base-border-color, #e5e7eb);
+  margin: 0 8px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  border-radius: var(--npk-base-radius, 4px);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--npk-icon-active-background, rgba(0, 0, 0, 0.05));
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.page-info,
+.zoom-info {
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 60px;
+  text-align: center;
+  font-feature-settings: "tnum";
+}
+
+/* Main area with sidebar */
+.pdf-main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Content Area */
+.pdf-content {
+  flex: 1;
+  overflow: auto;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: var(--npk-pages-container-background);
+  transition: margin-left 0.3s ease;
+}
+
+.pdf-page-wrapper {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background: white;
+  transition: transform 0.2s ease;
+}
+
+/* Dark Theme */
+.vue-pdf-viewer.dark-theme {
+  background: var(--npk-pages-container-background);
+}
+
+.vue-pdf-viewer.dark-theme .pdf-toolbar {
+  background: var(--npk-toolbar-background-color);
+  border-bottom-color: var(--npk-toolbar-border-color);
+  color: var(--npk-toolbar-color);
+}
+
+.vue-pdf-viewer.dark-theme .pdf-sidebar {
+  background: var(--npk-sidebar-content-background-color);
+  border-right-color: var(--npk-base-border-color);
+  color: var(--npk-toolbar-color);
+}
+
+.vue-pdf-viewer.dark-theme .divider {
+  background-color: var(--npk-base-border-color);
+}
+
+.vue-pdf-viewer.dark-theme button:hover:not(:disabled) {
+  background-color: var(--npk-icon-active-background);
+}
+
+/* Sidebar */
+.pdf-sidebar {
+  width: 250px;
+  background: var(--npk-sidebar-content-background-color, #fafafa);
+  border-right: 1px solid var(--npk-base-border-color, #e5e7eb);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--npk-base-border-color, #e5e7eb);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.close-btn {
+  width: 28px !important;
+  height: 28px !important;
+  font-size: 24px;
+  line-height: 1;
+  padding: 0;
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.thumbnail-item {
+  margin-bottom: 12px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: var(--npk-base-radius, 4px);
+  padding: 8px;
+  transition: all 0.2s;
+}
+
+.thumbnail-item:hover {
+  background: var(--npk-icon-active-background, rgba(0, 0, 0, 0.05));
+}
+
+.thumbnail-item.active {
+  border-color: var(--npk-primary-color, #3b82f6);
+  background: var(--npk-icon-active-background, rgba(0, 0, 0, 0.05));
+}
+
+.thumbnail-preview {
+  aspect-ratio: 8.5 / 11;
+  background: white;
+  border: 1px solid var(--npk-base-border-color, #e5e7eb);
+  border-radius: var(--npk-base-radius, 4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.page-placeholder {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--npk-secondary-color, #6b7280);
+}
+
+.thumbnail-label {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: var(--npk-secondary-color, #6b7280);
+}
+
+/* Slide transition */
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-enter-from {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.slide-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+</style>
