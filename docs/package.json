@@ -2,7 +2,7 @@
   "name": "docs",
   "scripts": {
     "dev": "nuxt dev --extends docus",
-    "build": "NODE_OPTIONS=--max-old-space-size=4096 nuxt build --extends docus"
+    "build": "NODE_OPTIONS=--max-old-space-size=8192 nuxt build --extends docus"
   },
   "dependencies": {
     "@nuxt/eslint": "1.12.1",
