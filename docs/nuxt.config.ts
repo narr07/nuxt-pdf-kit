@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     },
   },
   i18n: {
+    // Force build trigger
     defaultLocale: 'en',
     langDir: 'locales',
     locales: [
