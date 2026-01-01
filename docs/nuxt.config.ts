@@ -4,6 +4,9 @@ export default defineNuxtConfig({
     name: 'Nuxt PDF Kit',
     url: 'https://nuxtpdfkit.permadi.dev',
   },
+  nitro: {
+    preset: 'cloudflare-pages',
+  },
   i18n: {
     defaultLocale: 'en',
     locales: [
@@ -11,11 +14,12 @@ export default defineNuxtConfig({
       { code: 'id', name: 'Indonesia' },
     ],
   },
-  // Disable OG Image for Cloudflare Pages compatibility
+  // OG Image for Cloudflare Pages - use Satori renderer
   ogImage: {
-    enabled: false,
-  },
-  nitro: {
-    preset: 'cloudflare-pages',
+    compatibility: {
+      runtime: {
+        resvg: false, // Disable resvg (native module not compatible with CF)
+      },
+    },
   },
 })
