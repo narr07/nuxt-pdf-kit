@@ -1,17 +1,26 @@
 export default defineNuxtConfig({
   modules: ['@nuxtjs/i18n'],
+  extends: ['docus'],
   site: {
     name: 'Nuxt PDF Kit',
     url: 'https://nuxtpdfkit.permadi.dev',
   },
+  ogImage: {
+    zeroRuntime: true,
+  },
   nitro: {
     preset: 'cloudflare-pages',
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+    },
   },
   i18n: {
     defaultLocale: 'en',
+    langDir: 'locales',
     locales: [
-      { code: 'en', name: 'English' },
-      { code: 'id', name: 'Indonesia' },
+      { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'id', name: 'Indonesia', file: 'id.json' },
     ],
   },
   llms: {
