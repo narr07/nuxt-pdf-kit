@@ -30,16 +30,14 @@ describe('nuxt-pdf-kit module', async () => {
       const html = await $fetch('/')
       // The page should render without errors, meaning config is accessible
       expect(html).toContain('basic')
-})
-
-describe('module configuration', async () => {
-  await setup({
-    rootDir: fileURLToPath(new URL('./fixtures/basic', import.meta.url)),
+    })
   })
 
-  it('module is properly registered', async () => {
-    const html = await $fetch('/')
-    // Page renders without module errors
-    expect(html).toContain('basic')
+  describe('module configuration', () => {
+    it('module is properly registered', async () => {
+      const html = await $fetch('/')
+      // Page renders without module errors
+      expect(html).toContain('basic')
+    })
   })
 })

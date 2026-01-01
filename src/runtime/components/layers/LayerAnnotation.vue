@@ -10,13 +10,11 @@
 import { ref, watch, nextTick } from 'vue'
 import type { PDFPageProxy } from 'pdfjs-dist/types/src/display/api'
 
-interface Props {
+const props = defineProps<{
   page: PDFPageProxy | null
   scale: number
   rotation: number
-}
-
-const props = defineProps<Props>()
+}>()
 
 const annotationLayerRef = ref<HTMLDivElement | null>(null)
 const annotationLayerStyle = ref<Record<string, string>>({})

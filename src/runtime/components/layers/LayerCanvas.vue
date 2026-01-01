@@ -10,13 +10,11 @@
 import { ref, watch, onBeforeUnmount, nextTick } from 'vue'
 import type { PDFPageProxy } from 'pdfjs-dist'
 
-interface Props {
+const props = defineProps<{
   page: PDFPageProxy | null
   scale: number
   rotation: number
-}
-
-const props = defineProps<Props>()
+}>()
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 const canvasStyle = ref<Record<string, string>>({})

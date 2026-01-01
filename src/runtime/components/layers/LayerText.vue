@@ -10,7 +10,7 @@
 import { ref, watch, onBeforeUnmount, nextTick } from 'vue'
 import type { PDFPageProxy, TextContent, TextItem } from 'pdfjs-dist/types/src/display/api'
 
-interface Props {
+const props = withDefaults(defineProps<{
   page: PDFPageProxy | null
   scale: number
   rotation: number
@@ -19,9 +19,7 @@ interface Props {
   pageNumber?: number
   currentMatchPage?: number
   currentMatchIndexInPage?: number
-}
-
-const props = withDefaults(defineProps<Props>(), {
+}>(), {
   searchQuery: '',
   caseSensitive: false,
   pageNumber: 0,
