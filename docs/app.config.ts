@@ -5,9 +5,7 @@ export default defineAppConfig({
       neutral: 'slate',
     },
   },
-  docus: {
-    locale: 'en', // Set your locale (default: 'en')
-  },
+
   seo: {
     // Default to package.json name
     title: 'Nuxt PDF Kit',

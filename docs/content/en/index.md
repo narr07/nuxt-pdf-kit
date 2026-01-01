@@ -2,6 +2,7 @@
 seo:
   title: Nuxt PDF Kit - A Feature-Rich PDF Viewer for Nuxt
   description: A feature-rich PDF viewer module for Nuxt with a premium UI built on Nuxt UI v3 and Tailwind CSS v4. View, search, zoom, rotate, print, and download PDFs with ease.
+  ogImage: '/og_image.png'
 ---
 
 ::u-page-hero

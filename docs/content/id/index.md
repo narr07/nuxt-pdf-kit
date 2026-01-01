@@ -1,6 +1,9 @@
+---
 seo:
   title: Nuxt PDF Kit - Penampil PDF Kaya Fitur untuk Nuxt
   description: Modul penampil PDF kaya fitur untuk Nuxt dengan UI premium berbasis Nuxt UI v3 dan Tailwind CSS v4. Lihat, cari, zoom, rotasi, cetak, dan unduh PDF dengan mudah.
+  ogImage: '/og_image.png'
+---
 
 ::u-page-hero
 #title
@@ -16,7 +19,7 @@ Lihat, cari, zoom, rotasi, cetak, dan unduh PDF dengan mudah.
   ---
   color: neutral
   size: xl
-  to: /id/getting-started/installation
+  to: /en/getting-started/installation
   trailing-icon: i-lucide-arrow-right
   ---
   Mulai
@@ -30,16 +33,16 @@ Lihat, cari, zoom, rotasi, cetak, dan unduh PDF dengan mudah.
   to: https://github.com/narr07/nuxt-pdf-kit
   variant: outline
   ---
-  Beri bintang di GitHub
+  Bintang di GitHub
   :::
 ::
 
 ::u-page-section
 #title
-Mengapa Nuxt PDF Kit?
+Kenapa Nuxt PDF Kit?
 
 #description
-Membangun penampil PDF di Nuxt membutuhkan penanganan kompleksitas PDF.js, masalah SSR, dan membuat UI yang baik dari nol. Nuxt PDF Kit menyelesaikan semua masalah tersebut.
+Membangun penampil PDF di Nuxt membutuhkan penanganan kompleksitas PDF.js, masalah SSR, dan membuat UI yang bagus dari awal. Nuxt PDF Kit menyelesaikan semua masalah tersebut.
 
 #features
   :::u-page-feature
@@ -47,10 +50,10 @@ Membangun penampil PDF di Nuxt membutuhkan penanganan kompleksitas PDF.js, masal
   icon: i-lucide-palette
   ---
   #title
-  [Premium UI]{.text-primary}
+  [UI Premium]{.text-primary}
   
   #description
-  Antarmuka indah dan responsif dengan dukungan mode terang/gelap. Dibangun dengan Nuxt UI v3 untuk tampilan konsisten dan modern.
+  Antarmuka indah dan responsif dengan dukungan mode gelap/terang. Dibangun dengan Nuxt UI v3 untuk tampilan modern dan konsisten.
   :::
 
   :::u-page-feature
@@ -58,10 +61,10 @@ Membangun penampil PDF di Nuxt membutuhkan penanganan kompleksitas PDF.js, masal
   icon: i-lucide-server
   ---
   #title
-  [SSR Compatible]{.text-primary}
+  [Kompatibel SSR]{.text-primary}
   
   #description
-  Bekerja langsung dengan server-side rendering Nuxt. Tidak perlu konfigurasi rumit untuk komponen khusus klien.
+  Berjalan langsung dengan rendering sisi server Nuxt. Tidak perlu konfigurasi rumit untuk komponen khusus klien.
   :::
 
   :::u-page-feature
@@ -69,10 +72,10 @@ Membangun penampil PDF di Nuxt membutuhkan penanganan kompleksitas PDF.js, masal
   icon: i-lucide-zap
   ---
   #title
-  [Zero Config]{.text-primary}
+  [Tanpa Konfigurasi]{.text-primary}
   
   #description
-  Otomatis memasang dependensi (@nuxt/ui, @vueuse/nuxt). Cukup tambahkan modul dan mulai menggunakan penampil PDF segera.
+  Instalasi otomatis dependensi (@nuxt/ui, @vueuse/nuxt). Cukup tambahkan modul dan langsung gunakan penampil PDF.
   :::
 
   :::u-page-feature
@@ -80,10 +83,10 @@ Membangun penampil PDF di Nuxt membutuhkan penanganan kompleksitas PDF.js, masal
   icon: i-lucide-smartphone
   ---
   #title
-  [Responsive Design]{.text-primary}
+  [Desain Responsif]{.text-primary}
   
   #description
-  Ramah seluler dengan toolbar adaptif yang menyesuaikan beragam ukuran layar. Cocok untuk semua perangkat.
+  Ramah seluler dengan toolbar adaptif yang menyesuaikan ukuran layar. Cocok untuk semua perangkat.
   :::
 
   :::u-page-feature
@@ -91,7 +94,7 @@ Membangun penampil PDF di Nuxt membutuhkan penanganan kompleksitas PDF.js, masal
   icon: i-lucide-search
   ---
   #title
-  [Full-Text Search]{.text-primary}
+  [Pencarian Teks Lengkap]{.text-primary}
   
   #description
   Pencarian teks bawaan dengan penyorotan dan navigasi. Temukan teks apa pun di dokumen PDF Anda secara instan.
@@ -102,10 +105,10 @@ Membangun penampil PDF di Nuxt membutuhkan penanganan kompleksitas PDF.js, masal
   icon: i-lucide-settings
   ---
   #title
-  [Feature Complete]{.text-primary}
+  [Fitur Lengkap]{.text-primary}
   
   #description
-  Pencarian, zoom, rotasi, cetak, unduh, thumbnail, pintasan keyboard, dan lainnya. Semua yang Anda butuhkan dalam satu paket.
+  Cari, zoom, rotasi, cetak, unduh, thumbnail, pintasan keyboard, dan lainnya. Semua yang Anda butuhkan dalam satu paket.
   :::
 ::
 
@@ -119,10 +122,10 @@ Semua Fitur yang Anda Butuhkan
   icon: i-lucide-file-text
   ---
   #title
-  PDF Rendering
+  Rendering PDF
   
   #description
-  Rendering berkualitas tinggi dengan PDF.js untuk dokumen yang tajam dan jelas.
+  Rendering berkualitas tinggi dengan PDF.js untuk dokumen yang jelas dan tajam.
   :::
 
   :::u-page-feature
@@ -130,10 +133,10 @@ Semua Fitur yang Anda Butuhkan
   icon: i-lucide-zoom-in
   ---
   #title
-  Zoom Controls
+  Kontrol Zoom
   
   #description
-  Zoom masuk/keluar, pas halaman, pas lebar, dan persentase khusus.
+  Zoom in/out, fit halaman, fit lebar, dan opsi persentase khusus.
   :::
 
   :::u-page-feature
@@ -141,10 +144,10 @@ Semua Fitur yang Anda Butuhkan
   icon: i-lucide-rotate-cw
   ---
   #title
-  Rotation
+  Rotasi
   
   #description
-  Rotasi dokumen searah jarum jam untuk sudut pandang yang lebih baik.
+  Putar dokumen searah jarum jam untuk sudut tampilan yang lebih baik.
   :::
 
   :::u-page-feature
@@ -152,10 +155,10 @@ Semua Fitur yang Anda Butuhkan
   icon: i-lucide-layout-grid
   ---
   #title
-  View Modes
+  Mode Tampilan
   
   #description
-  Opsi tata letak satu halaman, dua halaman, dan dua dengan cover.
+  Opsi tata letak halaman tunggal, dua halaman, dan dua dengan sampul.
   :::
 
   :::u-page-feature
@@ -163,7 +166,7 @@ Semua Fitur yang Anda Butuhkan
   icon: i-lucide-scroll
   ---
   #title
-  Scroll Modes
+  Mode Scroll
   
   #description
   Scroll vertikal, horizontal, terbungkus, dan per halaman.
@@ -174,10 +177,10 @@ Semua Fitur yang Anda Butuhkan
   icon: i-lucide-image
   ---
   #title
-  Thumbnails
+  Thumbnail
   
   #description
-  Sidebar dengan thumbnail halaman untuk navigasi yang mudah.
+  Sidebar dengan thumbnail halaman untuk navigasi mudah.
   :::
 
   :::u-page-feature
@@ -185,7 +188,7 @@ Semua Fitur yang Anda Butuhkan
   icon: i-lucide-keyboard
   ---
   #title
-  Keyboard Shortcuts
+  Pintasan Keyboard
   
   #description
   Navigasi dengan tombol panah, zoom dengan +/-, dan pintasan lainnya.
@@ -199,7 +202,7 @@ Semua Fitur yang Anda Butuhkan
   Mode Gelap
   
   #description
-  Toggle tema bawaan dengan penyimpanan preferensi antar sesi.
+  Toggle tema bawaan dengan penyimpanan preferensi.
   :::
 
   :::u-page-feature
@@ -210,7 +213,7 @@ Semua Fitur yang Anda Butuhkan
   Cetak & Unduh
   
   #description
-  Dukungan cetak dan unduh native untuk semua dokumen PDF.
+  Dukungan cetak dan unduh asli untuk semua dokumen PDF.
   :::
 
   :::u-page-feature
@@ -218,7 +221,7 @@ Semua Fitur yang Anda Butuhkan
   icon: i-lucide-layers
   ---
   #title
-  Virtual Scrolling
+  Scroll Virtual
   
   #description
   Rendering efisien untuk dokumen besar dengan banyak halaman.
@@ -232,7 +235,7 @@ Semua Fitur yang Anda Butuhkan
   Mode Layar Penuh
   
   #description
-  Pengalaman menonton layar penuh yang imersif.
+  Pengalaman melihat PDF secara layar penuh yang imersif.
   :::
 
   :::u-page-feature
@@ -243,4 +246,4 @@ Semua Fitur yang Anda Butuhkan
   Mode Responsif
   
   #description
-  Sesuaikan halaman otomatis ke lebar kontainer.
+  Otomatis menyesuaikan lebar halaman dengan lebar kontainer.

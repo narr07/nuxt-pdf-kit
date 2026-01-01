@@ -1,7 +1,8 @@
 <template>
   <UPopover
     v-model:open="isPopoverOpen"
-    :content="{ side: 'bottom', align: 'center', sideOffset: 8 }">
+    :content="{ side: 'bottom', align: 'center', sideOffset: 8 }"
+  >
     <!-- Trigger Button -->
     <UButton
       icon="i-heroicons-magnifying-glass"
