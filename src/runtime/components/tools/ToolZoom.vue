@@ -14,6 +14,7 @@
     <!-- Zoom Input / Dropdown -->
     <UPopover
       :open="isDropdownOpen"
+      :portal="!isFullscreen"
       @update:open="isDropdownOpen = $event"
     >
       <UButton
@@ -121,6 +122,7 @@ interface Props {
   pageWidth?: number
   pageHeight?: number
   isDark?: boolean
+  isFullscreen?: boolean
 }
 
 interface Emits {
@@ -139,6 +141,7 @@ const props = withDefaults(defineProps<Props>(), {
   pageWidth: 612,
   pageHeight: 792,
   isDark: false,
+  isFullscreen: false,
 })
 
 const emit = defineEmits<Emits>()

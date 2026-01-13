@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="containerRef"
     class="npk-viewer"
     :data-theme="isDark ? 'dark' : 'light'"
   >
@@ -32,7 +33,6 @@
     <!-- Main Viewer -->
     <div
       v-else
-      ref="containerRef"
       class="npk-container"
     >
       <!-- Toolbar -->
@@ -42,7 +42,10 @@
         <!-- Mobile Layout (< 1024px) -->
         <div class="npk-toolbar-mobile items-center justify-between w-full">
           <!-- Left: Menu Button -->
-          <UDropdownMenu :items="mobileMenuItems">
+          <UDropdownMenu
+            :items="mobileMenuItems"
+            :portal="!isFullscreen"
+          >
             <UButton
               icon="i-heroicons-bars-3"
               color="primary"
@@ -90,6 +93,7 @@
               :case-sensitive="searchCaseSensitive"
               :whole-words="searchWholeWords"
               :is-dark="isDark"
+              :is-fullscreen="isFullscreen"
               @search="handleSearch"
               @next-match="handleNextMatch"
               @prev-match="handlePrevMatch"
@@ -175,6 +179,7 @@
             :case-sensitive="searchCaseSensitive"
             :whole-words="searchWholeWords"
             :is-dark="isDark"
+            :is-fullscreen="isFullscreen"
             @search="handleSearch"
             @next-match="handleNextMatch"
             @prev-match="handlePrevMatch"
@@ -203,6 +208,7 @@
               :page-width="pageWidth"
               :page-height="pageHeight"
               :is-dark="isDark"
+              :is-fullscreen="isFullscreen"
               @update:scale="handleScaleUpdate"
               @update:zoom-mode="handleZoomModeUpdate"
               @zoom-in="zoomIn"
@@ -283,10 +289,10 @@
           <!-- Fullscreen -->
           <UButton
             v-if="toolbarConfig.fullscreen"
-            icon="i-heroicons-arrows-pointing-out"
+            :icon="isFullscreen ? 'i-heroicons-arrows-pointing-in' : 'i-heroicons-arrows-pointing-out'"
             color="primary"
             variant="ghost"
-            :title="t('fullscreen')"
+            :title="isFullscreen ? t('exitFullscreen') : t('fullscreen')"
             @click="toggleFullscreen"
           />
 
@@ -294,6 +300,7 @@
           <UDropdownMenu
             v-if="toolbarConfig.moreOptions"
             :items="moreOptionsItems"
+            :portal="!isFullscreen"
           >
             <UButton
               icon="i-heroicons-ellipsis-horizontal"
@@ -375,7 +382,10 @@
     </div>
 
     <!-- Document Properties Modal -->
-    <UModal v-model:open="showDocumentProperties">
+    <UModal
+      v-model:open="showDocumentProperties"
+      :portal="!isFullscreen"
+    >
       <template #content>
         <UCard>
           <template #header>
@@ -713,6 +723,7 @@ const t = (key: string) => {
     download: 'Download',
     toggleTheme: 'Toggle theme',
     fullscreen: 'Fullscreen',
+    exitFullscreen: 'Exit fullscreen',
     moreOptions: 'More options',
   }
   return translations[key] || key
@@ -1524,6 +1535,10 @@ watch(() => props.src, (newSrc) => {
   height: 100%;
   font-family: system-ui, sans-serif;
   overflow: hidden;
+  background-color: var(--ui-bg);
+}
+
+.npk-viewer:fullscreen {
   background-color: var(--ui-bg);
 }
 

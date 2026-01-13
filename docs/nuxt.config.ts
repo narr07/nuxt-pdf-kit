@@ -1,12 +1,9 @@
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/i18n'],
-  extends: ['docus'],
+  modules: ['@nuxtjs/i18n', 'nuxt-studio'],
+  // extends: ['docus'],
   site: {
     name: 'Nuxt PDF Kit',
     url: 'https://nuxtpdfkit.permadi.dev',
-  },
-  ogImage: {
-    zeroRuntime: true,
   },
   nitro: {
     preset: 'cloudflare-pages',
@@ -18,10 +15,9 @@ export default defineNuxtConfig({
   i18n: {
     // Force build trigger
     defaultLocale: 'en',
-    langDir: 'locales',
     locales: [
-      { code: 'en', name: 'English', file: 'en.json' },
-      { code: 'id', name: 'Indonesia', file: 'id.json' },
+      { code: 'en', name: 'English' },
+      { code: 'id', name: 'Indonesia' },
     ],
   },
   llms: {
@@ -33,12 +29,15 @@ export default defineNuxtConfig({
       description: 'A Nuxt module to easily embed PDF viewers with customizable toolbars in your Nuxt applications.',
     },
   },
-  // OG Image for Cloudflare Pages - use Satori renderer
-  // ogImage: {
-  //   compatibility: {
-  //     runtime: {
-  //       resvg: false, // Disable resvg (native module not compatible with CF)
-  //     },
-  //   },
-  // },
+  ogImage: {
+    zeroRuntime: true,
+  },
+  studio: {
+    repository: {
+      provider: 'github', // 'github' or 'gitlab'
+      owner: 'narr07',
+      repo: 'nuxt-pdf-kit',
+      branch: 'master',
+    },
+  },
 })

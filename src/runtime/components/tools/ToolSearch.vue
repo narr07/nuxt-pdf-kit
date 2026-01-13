@@ -2,6 +2,7 @@
   <UPopover
     v-model:open="isPopoverOpen"
     :content="{ side: 'bottom', align: 'center', sideOffset: 8 }"
+    :portal="!isFullscreen"
   >
     <!-- Trigger Button -->
     <UButton
@@ -59,7 +60,10 @@
         <div class="w-px h-5 bg-gray-300" />
 
         <!-- Options Popover (nested) -->
-        <UPopover :content="{ side: 'bottom', align: 'end', sideOffset: 8 }">
+        <UPopover
+          :content="{ side: 'bottom', align: 'end', sideOffset: 8 }"
+          :portal="!isFullscreen"
+        >
           <UButton
             icon="i-heroicons-adjustments-horizontal"
             color="primary"
@@ -130,6 +134,7 @@ interface Props {
   caseSensitive?: boolean
   wholeWords?: boolean
   isDark?: boolean
+  isFullscreen?: boolean
 }
 
 interface Emits {
@@ -146,6 +151,7 @@ const props = withDefaults(defineProps<Props>(), {
   caseSensitive: false,
   wholeWords: false,
   isDark: false,
+  isFullscreen: false,
 })
 
 const emit = defineEmits<Emits>()
