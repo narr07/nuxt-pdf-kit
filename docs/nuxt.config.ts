@@ -1,10 +1,12 @@
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/i18n', 'nuxt-studio'],
   // extends: ['docus'],
+  modules: ['@nuxtjs/i18n', 'nuxt-studio'],
+
   site: {
     name: 'Nuxt PDF Kit',
     url: 'https://nuxtpdfkit.permadi.dev',
   },
+
   nitro: {
     preset: 'cloudflare-pages',
     prerender: {
@@ -12,6 +14,7 @@ export default defineNuxtConfig({
       routes: ['/'],
     },
   },
+
   i18n: {
     // Force build trigger
     defaultLocale: 'en',
@@ -20,6 +23,7 @@ export default defineNuxtConfig({
       { code: 'id', name: 'Indonesia' },
     ],
   },
+
   llms: {
     domain: 'https://nuxtpdfkit.permadi.dev/',
     title: 'Nuxt PDF Kit',
@@ -29,9 +33,15 @@ export default defineNuxtConfig({
       description: 'A Nuxt module to easily embed PDF viewers with customizable toolbars in your Nuxt applications.',
     },
   },
+
+  mcp: {
+    enabled: false,
+  },
+
   ogImage: {
     zeroRuntime: true,
   },
+
   studio: {
     repository: {
       provider: 'github', // 'github' or 'gitlab'
