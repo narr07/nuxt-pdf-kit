@@ -1550,6 +1550,11 @@ watch(() => props.src, (newSrc) => {
 }
 
 /* Responsive toolbar */
+.npk-toolbar {
+  position: relative;
+  z-index: 10;
+}
+
 .npk-toolbar-mobile {
   display: flex;
 }
