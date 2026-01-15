@@ -1,4 +1,4 @@
-# Nuxt PDF Kit
+[![nuxt-pdf-kit](https://raw.githubusercontent.com/narr07/nuxt-pdf-kit/master/docs/public/og_image.png)](https://nuxtpdfkit.permadi.dev/)
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
