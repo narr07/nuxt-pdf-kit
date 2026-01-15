@@ -40,6 +40,21 @@ export type ZoomLevel = 'auto' | 'page-fit' | 'page-width' | number
 // View modes
 export type ViewMode = 'single' | 'dual' | 'dual-cover'
 
+// Provider types for different file sources
+export type PdfProvider = 'url' | 'gdrive' | 'custom'
+
+export interface ProviderConfig {
+  /** Base URL for custom provider */
+  baseUrl?: string
+  /** Custom transform function for src */
+  transform?: (src: string) => string
+  /** Enable caching */
+  cache?: boolean
+  /** Cache max age in seconds */
+  maxAge?: number
+  /** Additional provider-specific options */
+  [key: string]: unknown
+}
 // Scroll modes
 export type ScrollMode = 'vertical' | 'horizontal' | 'wrapped' | 'page'
 

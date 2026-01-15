@@ -99,6 +99,18 @@ export default defineNuxtModule<ModuleOptions>({
     // Add plugin
     addPlugin(resolver.resolve('./runtime/plugin'))
 
+    // Add server routes for providers
+    nuxt.hook('nitro:config', (nitroConfig) => {
+      nitroConfig.handlers = nitroConfig.handlers || []
+
+      // Google Drive proxy route
+      // Match both /pdf-proxy/gdrive/ID and /pdf-proxy/gdrive/ID.pdf
+      nitroConfig.handlers.push({
+        route: '/pdf-proxy/gdrive/**',
+        handler: resolver.resolve('./runtime/server/routes/pdf-proxy/gdrive/[id]'),
+      })
+    })
+
     // Add components with client-only mode for SSR support
     addComponent({
       name: 'NuxtPdfKit',

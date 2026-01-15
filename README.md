@@ -92,6 +92,35 @@ const pdfViewer = ref(null);
 </script>
 ```
 
+### File Providers
+
+Load PDFs from different sources:
+
+```vue
+<template>
+  <!-- Direct URL (default) -->
+  <NuxtPdfKit src="/sample.pdf" />
+
+  <!-- Google Drive -->
+  <NuxtPdfKit provider="gdrive" src="1bAsv95pTaBiHyGiWFIa-zebT31Al_0tu" />
+
+  <!-- Custom CDN/Proxy -->
+  <NuxtPdfKit
+    provider="custom"
+    src="file-123"
+    :provider-config="{ baseUrl: '/cdn' }"
+  />
+</template>
+```
+
+**Supported Providers:**
+
+- `url` - Direct URLs (default)
+- `gdrive` - Google Drive files
+- `custom` - Custom CDN or proxy server
+
+See [Provider Documentation](./docs/content/en/5.advanced/1.providers.md) for more details.
+
 ## Configuration
 
 Configure the module in your `nuxt.config.ts`:

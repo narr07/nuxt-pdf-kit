@@ -469,6 +469,8 @@ import type * as PDFJS from 'pdfjs-dist'
 import { usePdfKitViewMode } from '../composables/usePdfKitViewMode'
 import { usePdfKitSearch } from '../composables/usePdfKitSearch'
 import { usePdfKitZoom, type ZoomLevel } from '../composables/usePdfKitZoom'
+import { usePdfKitProvider } from '../composables/usePdfKitProvider'
+import type { PdfProvider, ProviderConfig } from '../types'
 import ToolSearch from './tools/ToolSearch.vue'
 import ToolZoom from './tools/ToolZoom.vue'
 import NuxtPdfThumbnails from './NuxtPdfThumbnails.client.vue'
@@ -502,6 +504,10 @@ interface DocumentPropertiesOptions {
 
 interface Props {
   src: string
+  /** Provider type for file source */
+  provider?: PdfProvider
+  /** Provider-specific configuration */
+  providerConfig?: ProviderConfig
   theme?: 'light' | 'dark'
   initialViewMode?: 'single' | 'dual' | 'dual-cover'
   initialScrollMode?: 'vertical' | 'horizontal' | 'wrapped' | 'page'
@@ -530,6 +536,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  provider: 'url',
   theme: 'light',
   initialViewMode: 'single',
   initialScrollMode: 'vertical',
@@ -556,6 +563,15 @@ const toolbarConfig = computed<ToolbarOptions>(() => ({
   themeToggle: props.toolbar?.themeToggle ?? moduleToolbarConfig.themeToggle ?? true,
   moreOptions: props.toolbar?.moreOptions ?? moduleToolbarConfig.moreOptions ?? true,
 }))
+
+// Transform src based on provider
+const transformedSrc = computed(() => {
+  return usePdfKitProvider(
+    props.provider,
+    props.src,
+    props.providerConfig,
+  )
+})
 
 // State
 const loading = ref(true)
@@ -1503,8 +1519,8 @@ onMounted(async () => {
       pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`
     }
 
-    if (props.src) {
-      loadPdf(props.src)
+    if (transformedSrc.value) {
+      loadPdf(transformedSrc.value)
     }
 
     document.addEventListener('click', handleClickOutside)
@@ -1519,7 +1535,7 @@ onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside)
 })
 
-watch(() => props.src, (newSrc) => {
+watch(() => transformedSrc.value, (newSrc) => {
   if (newSrc && pdfjsLib) {
     currentPage.value = 1
     loadPdf(newSrc)
