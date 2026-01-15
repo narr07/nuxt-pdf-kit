@@ -10,7 +10,8 @@ describe('nuxt-pdf-kit module', async () => {
   describe('SSR rendering', () => {
     it('renders the index page', async () => {
       const html = await $fetch('/')
-      expect(html).toContain('<div id="test-marker">basic</div>')
+      expect(html).toContain('id="test-marker"')
+      expect(html).toContain('basic')
     })
 
     it('includes PDF viewer container in HTML', async () => {

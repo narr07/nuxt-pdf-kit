@@ -5,11 +5,11 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-A feature-rich PDF viewer module for Nuxt with a premium UI built on **Nuxt UI v3** and **Tailwind CSS v4**.
+A feature-rich PDF viewer module for Nuxt with **Nuxt UI v3** and **Tailwind CSS v4**.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/user/nuxt-pdf-kit?file=playground%2Fapp.vue) -->
-<!-- - [📖 &nbsp;Documentation](https://nuxt-pdf-kit.nuxt.dev) -->
+  <!-- - [🏀 Online playground](https://stackblitz.com/github/user/nuxt-pdf-kit?file=playground%2Fapp.vue) -->
+  <!-- - [📖 &nbsp;Documentation](https://nuxt-pdf-kit.nuxt.dev) -->
 
 ## Why?
 
@@ -53,8 +53,8 @@ npm install nuxt-pdf-kit
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['nuxt-pdf-kit'],
-})
+  modules: ["nuxt-pdf-kit"],
+});
 ```
 
 ## Usage
@@ -88,7 +88,7 @@ export default defineNuxtConfig({
 </template>
 
 <script setup>
-const pdfViewer = ref(null)
+const pdfViewer = ref(null);
 </script>
 ```
 
@@ -98,7 +98,7 @@ Configure the module in your `nuxt.config.ts`:
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['nuxt-pdf-kit'],
+  modules: ["nuxt-pdf-kit"],
   pdfKit: {
     // Auto-install @nuxt/ui (default: true)
     ui: true,
@@ -106,59 +106,59 @@ export default defineNuxtConfig({
     vueuse: true,
     // Toolbar configuration
     toolbar: {
-      sidebar: true,        // Thumbnail sidebar toggle
+      sidebar: true, // Thumbnail sidebar toggle
       pageNavigation: true, // Page navigation controls
-      zoom: true,           // Zoom controls
-      search: true,         // Search tool
-      rotate: true,         // Rotate button
-      openFile: false,      // Open file button
-      print: true,          // Print button
-      download: true,       // Download button
-      fullscreen: true,     // Fullscreen button
-      themeToggle: true,    // Theme toggle button
-      moreOptions: true,    // More options menu
+      zoom: true, // Zoom controls
+      search: true, // Search tool
+      rotate: true, // Rotate button
+      openFile: false, // Open file button
+      print: true, // Print button
+      download: true, // Download button
+      fullscreen: true, // Fullscreen button
+      themeToggle: true, // Theme toggle button
+      moreOptions: true, // More options menu
     },
   },
-})
+});
 ```
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `src` | `string` | required | URL or path to PDF file |
-| `theme` | `'light' \| 'dark'` | `'light'` | Initial theme |
-| `responsive` | `boolean` | `true` | Auto-fit pages to container width |
-| `initialViewMode` | `'single' \| 'dual' \| 'dual-cover'` | `'single'` | Initial view mode |
-| `initialScrollMode` | `'vertical' \| 'horizontal' \| 'wrapped' \| 'page'` | `'vertical'` | Initial scroll mode |
-| `virtualScroll` | `boolean` | `true` | Enable virtual scrolling |
-| `virtualScrollThreshold` | `number` | `10` | Pages threshold for virtual scrolling |
-| `toolbar` | `ToolbarOptions` | - | Override toolbar config |
+| Prop                     | Type                                                | Default      | Description                           |
+| ------------------------ | --------------------------------------------------- | ------------ | ------------------------------------- |
+| `src`                    | `string`                                            | required     | URL or path to PDF file               |
+| `theme`                  | `'light' \| 'dark'`                                 | `'light'`    | Initial theme                         |
+| `responsive`             | `boolean`                                           | `true`       | Auto-fit pages to container width     |
+| `initialViewMode`        | `'single' \| 'dual' \| 'dual-cover'`                | `'single'`   | Initial view mode                     |
+| `initialScrollMode`      | `'vertical' \| 'horizontal' \| 'wrapped' \| 'page'` | `'vertical'` | Initial scroll mode                   |
+| `virtualScroll`          | `boolean`                                           | `true`       | Enable virtual scrolling              |
+| `virtualScrollThreshold` | `number`                                            | `10`         | Pages threshold for virtual scrolling |
+| `toolbar`                | `ToolbarOptions`                                    | -            | Override toolbar config               |
 
 ## Composables
 
 All composables are prefixed with `usePdfKit` following Nuxt module best practices:
 
-| Composable | Description |
-|------------|-------------|
-| `usePdfKitDocument` | PDF document loading and management |
-| `usePdfKitZoom` | Zoom controls and scale management |
-| `usePdfKitSearch` | Text search with highlighting |
-| `usePdfKitViewMode` | View mode and scroll mode |
-| `usePdfKitVirtualScroll` | Virtual scrolling for large documents |
-| `usePdfKitRotation` | Document rotation |
-| `usePdfKitPageNavigation` | Page navigation utilities |
+| Composable                | Description                           |
+| ------------------------- | ------------------------------------- |
+| `usePdfKitDocument`       | PDF document loading and management   |
+| `usePdfKitZoom`           | Zoom controls and scale management    |
+| `usePdfKitSearch`         | Text search with highlighting         |
+| `usePdfKitViewMode`       | View mode and scroll mode             |
+| `usePdfKitVirtualScroll`  | Virtual scrolling for large documents |
+| `usePdfKitRotation`       | Document rotation                     |
+| `usePdfKitPageNavigation` | Page navigation utilities             |
 
 ## Keyboard Shortcuts
 
-| Key | Action |
-|-----|--------|
-| `←` `↑` | Previous page |
-| `→` `↓` | Next page |
-| `+` `=` | Zoom in |
-| `-` | Zoom out |
-| `Ctrl/Cmd + F` | Focus search |
-| `Escape` | Exit fullscreen / Clear search |
+| Key            | Action                         |
+| -------------- | ------------------------------ |
+| `←` `↑`        | Previous page                  |
+| `→` `↓`        | Next page                      |
+| `+` `=`        | Zoom in                        |
+| `-`            | Zoom out                       |
+| `Ctrl/Cmd + F` | Focus search                   |
+| `Escape`       | Exit fullscreen / Clear search |
 
 ## Requirements
 
@@ -169,30 +169,30 @@ All composables are prefixed with `usePdfKit` following Nuxt module best practic
 
 <details>
   <summary>Local development</summary>
-  
-  ```bash
-  # Install dependencies
-  npm install
-  
-  # Generate type stubs
-  npm run dev:prepare
-  
-  # Develop with the playground
-  npm run dev
-  
-  # Build the playground
-  npm run dev:build
-  
-  # Run ESLint
-  npm run lint
-  
-  # Run Vitest
-  npm run test
-  npm run test:watch
-  
-  # Release new version
-  npm run release
-  ```
+
+```bash
+# Install dependencies
+npm install
+
+# Generate type stubs
+npm run dev:prepare
+
+# Develop with the playground
+npm run dev
+
+# Build the playground
+npm run dev:build
+
+# Run ESLint
+npm run lint
+
+# Run Vitest
+npm run test
+npm run test:watch
+
+# Release new version
+npm run release
+```
 
 </details>
 
@@ -201,14 +201,12 @@ All composables are prefixed with `usePdfKit` following Nuxt module best practic
 [MIT License](./LICENSE)
 
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-pdf-kit/latest.svg?style=flat&colorA=020420&colorB=00DC82
 [npm-version-href]: https://npmjs.com/package/nuxt-pdf-kit
-
 [npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-pdf-kit.svg?style=flat&colorA=020420&colorB=00DC82
 [npm-downloads-href]: https://npm.chart.dev/nuxt-pdf-kit
-
 [license-src]: https://img.shields.io/npm/l/nuxt-pdf-kit.svg?style=flat&colorA=020420&colorB=00DC82
 [license-href]: https://npmjs.com/package/nuxt-pdf-kit
-
 [nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt
 [nuxt-href]: https://nuxt.com

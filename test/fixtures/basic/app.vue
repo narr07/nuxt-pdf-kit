@@ -17,6 +17,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-// Composables are auto-imported in Nuxt

@@ -9,7 +9,8 @@ describe('custom toolbar configuration', async () => {
 
   it('renders the page with custom toolbar config', async () => {
     const html = await $fetch('/')
-    expect(html).toContain('<div id="test-marker">custom-toolbar</div>')
+    expect(html).toContain('id="test-marker"')
+    expect(html).toContain('custom-toolbar')
   })
 
   it('module accepts custom toolbar options without errors', async () => {

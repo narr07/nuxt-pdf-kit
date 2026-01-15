@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  // extends: ['docus'],
+  extends: ['docus'],
   modules: ['@nuxtjs/i18n', 'nuxt-studio'],
 
   site: {
