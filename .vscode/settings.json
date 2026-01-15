@@ -1,3 +1,15 @@
 {
-  "eslint.useFlatConfig": true
+  "eslint.useFlatConfig": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "never"
+    }
+  },
+  "files.associations": {
+    "*.md": "markdown"
+  }
 }

@@ -875,7 +875,7 @@ const scrollToPage = (pageNum: number) => {
 // NOTE: We do NOT watch currentPage for auto-scroll anymore
 // Scroll only happens when explicitly called via goToPageAndScroll
 
-// More options dropdown items for Nuxt UI v3
+// More options dropdown items for Nuxt UI
 const moreOptionsItems = computed(() => [
   [
     {
@@ -1241,7 +1241,7 @@ const handleZoomModeUpdate = (mode: 'auto' | 'page-actual' | 'page-fit' | 'page-
   }
 }
 
-// Page input handlers for Nuxt UI v3
+// Page input handlers for Nuxt UI
 const onPageInputUpdate = (value: string | number) => {
   const page = typeof value === 'string' ? Number.parseInt(value) : value
   if (!Number.isNaN(page) && page >= 1 && page <= pages.value.length) {

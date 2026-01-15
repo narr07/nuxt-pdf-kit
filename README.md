@@ -5,7 +5,7 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-A feature-rich PDF viewer module for Nuxt with **Nuxt UI v3** and **Tailwind CSS v4**.
+A feature-rich PDF viewer module for Nuxt with **Nuxt UI** and **Tailwind CSS v4**.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
   <!-- - [🏀 Online playground](https://stackblitz.com/github/user/nuxt-pdf-kit?file=playground%2Fapp.vue) -->

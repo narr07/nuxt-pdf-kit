@@ -10,11 +10,9 @@ export default createConfigForNuxt({
     stylistic: true,
   },
   dirs: {
-    src: [
-      './playground',
-    ],
+    src: ['./playground'],
   },
+}).append({
+  // Ignore documentation content files
+  ignores: ['docs/content/**'],
 })
-  .append(
-    // your custom flat config here...
-  )

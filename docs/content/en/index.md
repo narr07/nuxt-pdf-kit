@@ -1,329 +1,262 @@
 ---
 seo:
-  title: Nuxt PDF Kit - A Feature-Rich PDF Viewer for Nuxt
-  description: A feature-rich PDF viewer module for Nuxt with Nuxt UI v3 and Tailwind CSS v4. View, search, zoom, rotate, print, and download PDFs with ease.
-  ogImage: "/og_image.png"
+  title: Nuxt PDF Kit - A Comprehensive PDF Viewer for Nuxt
+  description: Nuxt PDF Kit is a powerful PDF viewer module with Nuxt UI integration, offering seamless PDF viewing, search, zoom, rotation, printing, and downloading.
+  ogImage: "https://nuxt-pdf-kit.pages.dev/og_image.png"
 ---
+
+:the-gradient
 
 ::u-page-hero
 #title
-Nuxt PDF Kit
+Nuxt [PDF Kit]{.text-primary}
 
 #description
-A feature-rich PDF viewer module for Nuxt with **Nuxt UI v3** and **Tailwind CSS v4**.
+A fully featured PDF viewer module for Nuxt, built with **Nuxt UI** and **Tailwind CSS v4**.
 
-View, search, zoom, rotate, print, and download PDFs with ease.
+Effortlessly view, search, zoom, rotate, print, and download PDFs.
 
 #links
-:::u-button
+  :::u-button
+  ---
+  size: xl
+  to: /en/getting-started/installation
+  trailing-icon: i-lucide-arrow-right
+  ---
+  Get Started
+  :::
 
----
-
-color: neutral
-size: xl
-to: /en/getting-started/installation
-trailing-icon: i-lucide-arrow-right
-
----
-
-Get Started
-:::
-
-:::u-button
-
----
-
-color: neutral
-icon: i-simple-icons-github
-size: xl
-to: https://github.com/narr07/nuxt-pdf-kit
-variant: outline
-
----
-
-Star on GitHub
-:::
+  :::copy-code-input{source="npx nuxt module add nuxt-pdf-kit"}
+  :::
 ::
 
 ::u-page-section
 #title
-Why Nuxt PDF Kit?
+Why Choose [Nuxt PDF Kit?]{.text-primary}
 
 #description
-Building a PDF viewer in Nuxt requires dealing with PDF.js complexity, SSR issues, and creating a good UI from scratch. Nuxt PDF Kit solves all of these problems.
+Creating a PDF viewer in Nuxt involves managing PDF.js complexities, SSR challenges, and designing a UI from scratch. Nuxt PDF Kit addresses all these issues.
 
 #features
-:::u-page-feature
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-ph-image-duotone
+  ---
+  #title
+  Nuxt UI
 
----
+  #description
+  Enjoy a beautiful, responsive interface with support for dark and light modes. Designed using Nuxt UI for a modern and cohesive look.
+  :::
 
-icon: i-lucide-palette
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-server
+  ---
+  #title
+  [SSR Compatibility]{.text-primary}
 
----
+  #description
+  Seamlessly integrates with Nuxt's server-side rendering. No complex configurations needed for client-only components.
+  :::
 
-#title
-[Nuxt UI]{.text-primary}
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-zap
+  ---
+  #title
+  [Zero Configuration]{.text-primary}
 
-#description
-Beautiful, responsive interface with dark/light mode support. Built with Nuxt UI v3 for a modern and consistent look.
-:::
+  #description
+  Automatically installs necessary dependencies (@nuxt/ui, @vueuse/nuxt). Simply add the module and start using the PDF viewer right away.
+  :::
 
-:::u-page-feature
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-smartphone
+  ---
+  #title
+  [Responsive Design]{.text-primary}
 
----
+  #description
+  Mobile-friendly interface with an adaptive toolbar that adjusts to various screen sizes. Optimized for all devices.
+  :::
 
-icon: i-lucide-server
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-search
+  ---
+  #title
+  [Full-Text Search]{.text-primary}
 
----
+  #description
+  Includes a built-in text search feature with highlighting and navigation. Instantly locate any text in your PDF documents.
+  :::
 
-#title
-[SSR Compatible]{.text-primary}
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-settings
+  ---
+  #title
+  [Feature-Rich]{.text-primary}
 
-#description
-Works out of the box with Nuxt's server-side rendering. No complex configuration needed for client-only components.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-zap
-
----
-
-#title
-[Zero Config]{.text-primary}
-
-#description
-Auto-installs dependencies (@nuxt/ui, @vueuse/nuxt). Just add the module and start using the PDF viewer immediately.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-smartphone
-
----
-
-#title
-[Responsive Design]{.text-primary}
-
-#description
-Mobile-friendly with adaptive toolbar that adjusts to different screen sizes. Perfect for any device.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-search
-
----
-
-#title
-[Full-Text Search]{.text-primary}
-
-#description
-Built-in text search with highlighting and navigation. Find any text in your PDF documents instantly.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-settings
-
----
-
-#title
-[Feature Complete]{.text-primary}
-
-#description
-Search, zoom, rotate, print, download, thumbnails, keyboard shortcuts, and more. Everything you need in one package.
-:::
+  #description
+  Features include search, zoom, rotation, print, download, thumbnails, keyboard shortcuts, and much more—all in one package.
+  :::
 ::
 
 ::u-page-section
 #title
-All the Features You Need
+Comprehensive Feature Set
 
 #features
-:::u-page-feature
-
----
-
-icon: i-lucide-file-text
-
----
-
-#title
-PDF Rendering
-
-#description
-High-quality rendering with PDF.js for crisp and clear documents.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-zoom-in
-
----
-
-#title
-Zoom Controls
-
-#description
-Zoom in/out, fit page, fit width, and custom percentage options.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-rotate-cw
-
----
-
-#title
-Rotation
-
-#description
-Rotate documents clockwise for better viewing angles.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-layout-grid
-
----
-
-#title
-View Modes
-
-#description
-Single page, dual page, and dual with cover layout options.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-scroll
-
----
-
-#title
-Scroll Modes
-
-#description
-Vertical, horizontal, wrapped, and page-by-page scrolling.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-image
-
----
-
-#title
-Thumbnails
-
-#description
-Sidebar with page thumbnails for easy navigation.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-keyboard
-
----
-
-#title
-Keyboard Shortcuts
-
-#description
-Navigate with arrow keys, zoom with +/-, and more shortcuts.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-moon
-
----
-
-#title
-Dark Mode
-
-#description
-Built-in theme toggle with persistence across sessions.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-printer
-
----
-
-#title
-Print & Download
-
-#description
-Native print and download support for all PDF documents.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-layers
-
----
-
-#title
-Virtual Scrolling
-
-#description
-Efficient rendering for large documents with many pages.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-maximize
-
----
-
-#title
-Fullscreen Mode
-
-#description
-Immersive fullscreen viewing experience.
-:::
-
-:::u-page-feature
-
----
-
-icon: i-lucide-move
-
----
-
-#title
-Responsive Mode
-
-#description
-Auto-fit pages to container width automatically.
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-file-text
+  ---
+  #title
+  PDF Rendering
+
+  #description
+  High-quality rendering with PDF.js for sharp and clear documents.
+  :::
+
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-zoom-in
+  ---
+  #title
+  Zoom Controls
+
+  #description
+  Options to zoom in/out, fit the page, fit the width, or specify custom percentages.
+  :::
+
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-rotate-cw
+  ---
+  #title
+  Rotation
+
+  #description
+  Rotate documents clockwise for optimal viewing angles.
+  :::
+
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-layout-grid
+  ---
+  #title
+  View Modes
+
+  #description
+  Choose from single-page, dual-page, or dual-page with cover layout options.
+  :::
+
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-scroll
+  ---
+  #title
+  Scroll Modes
+
+  #description
+  Vertical, horizontal, wrapped, or page-by-page scrolling options available.
+  :::
+
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-image
+  ---
+  #title
+  Thumbnails
+
+  #description
+  Sidebar with page thumbnails for easy navigation through your document.
+  :::
+
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-keyboard
+  ---
+  #title
+  Keyboard Shortcuts
+
+  #description
+  Navigate with arrow keys, zoom with +/-, and use various other shortcuts for efficient browsing.
+  :::
+
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-moon
+  ---
+  #title
+  Dark Mode
+
+  #description
+  Built-in theme toggle with session persistence for a personalized experience.
+  :::
+
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-printer
+  ---
+  #title
+  Print & Download
+
+  #description
+  Full support for printing and downloading PDF documents natively.
+  :::
+
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-layers
+  ---
+  #title
+  Virtual Scrolling
+
+  #description
+  Efficient rendering for large documents with numerous pages.
+  :::
+
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-maximize
+  ---
+  #title
+  Fullscreen Mode
+
+  #description
+  A fully immersive full-screen viewing experience for PDFs.
+  :::
+
+  :::u-page-card
+  ---
+  spotlight: true
+  icon: i-lucide-move
+  ---
+  #title
+  Responsive Mode
+
+  #description
+  Pages automatically adjust to fit the container width for a seamless experience across devices.
+  :::
+::
