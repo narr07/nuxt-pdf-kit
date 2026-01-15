@@ -11,6 +11,7 @@
     "docus": "latest",
     "eslint": "^9.0.0",
     "nuxt": "^4.2.2",
+    "nuxt-pdf-kit": "1.2.0",
     "nuxt-studio": "1.0.0"
   }
 }

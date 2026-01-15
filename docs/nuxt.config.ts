@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   extends: ['docus'],
-  modules: ['@nuxtjs/i18n', 'nuxt-studio', '../src/module'],
+  modules: ['@nuxtjs/i18n', 'nuxt-studio', 'nuxt-pdf-kit'],
 
   site: {
     name: 'Nuxt PDF Kit',
