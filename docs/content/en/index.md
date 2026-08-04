@@ -2,7 +2,7 @@
 seo:
   title: Nuxt PDF Kit - A Comprehensive PDF Viewer for Nuxt
   description: Nuxt PDF Kit is a powerful PDF viewer module with Nuxt UI integration, offering seamless PDF viewing, search, zoom, rotation, printing, and downloading.
-  ogImage: "https://nuxt-pdf-kit.pages.dev/og_image.png"
+  ogImage: "https://nuxtpdfkit.permadi.dev/og_image.png"
 ---
 
 :the-gradient

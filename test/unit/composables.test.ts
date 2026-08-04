@@ -5,13 +5,13 @@ import { describe, it, expect } from 'vitest'
 
 describe('usePdfKitZoom composable', () => {
   it('should be importable', async () => {
-    const { usePdfKitZoom } = await import('../src/runtime/composables/usePdfKitZoom')
+    const { usePdfKitZoom } = await import('../../src/runtime/composables/usePdfKitZoom')
     expect(usePdfKitZoom).toBeDefined()
     expect(typeof usePdfKitZoom).toBe('function')
   })
 
   it('should return zoom controls', async () => {
-    const { usePdfKitZoom } = await import('../src/runtime/composables/usePdfKitZoom')
+    const { usePdfKitZoom } = await import('../../src/runtime/composables/usePdfKitZoom')
     const { scale, zoomIn, zoomOut, setZoom, zoomMode } = usePdfKitZoom()
 
     expect(scale).toBeDefined()
@@ -22,14 +22,14 @@ describe('usePdfKitZoom composable', () => {
   })
 
   it('should initialize with default scale', async () => {
-    const { usePdfKitZoom } = await import('../src/runtime/composables/usePdfKitZoom')
+    const { usePdfKitZoom } = await import('../../src/runtime/composables/usePdfKitZoom')
     const { scale } = usePdfKitZoom({ initialScale: 1.5 })
 
     expect(scale.value).toBe(1.5)
   })
 
   it('should zoom in correctly', async () => {
-    const { usePdfKitZoom } = await import('../src/runtime/composables/usePdfKitZoom')
+    const { usePdfKitZoom } = await import('../../src/runtime/composables/usePdfKitZoom')
     const { scale, zoomIn } = usePdfKitZoom({ initialScale: 1.0 })
 
     zoomIn()
@@ -37,7 +37,7 @@ describe('usePdfKitZoom composable', () => {
   })
 
   it('should zoom out correctly', async () => {
-    const { usePdfKitZoom } = await import('../src/runtime/composables/usePdfKitZoom')
+    const { usePdfKitZoom } = await import('../../src/runtime/composables/usePdfKitZoom')
     const { scale, zoomOut } = usePdfKitZoom({ initialScale: 1.0 })
 
     zoomOut()
@@ -45,7 +45,7 @@ describe('usePdfKitZoom composable', () => {
   })
 
   it('should respect min/max scale bounds', async () => {
-    const { usePdfKitZoom } = await import('../src/runtime/composables/usePdfKitZoom')
+    const { usePdfKitZoom } = await import('../../src/runtime/composables/usePdfKitZoom')
     const { scale, setZoom } = usePdfKitZoom({
       initialScale: 1.0,
       minScale: 0.5,
@@ -62,13 +62,13 @@ describe('usePdfKitZoom composable', () => {
 
 describe('usePdfKitViewMode composable', () => {
   it('should be importable', async () => {
-    const { usePdfKitViewMode } = await import('../src/runtime/composables/usePdfKitViewMode')
+    const { usePdfKitViewMode } = await import('../../src/runtime/composables/usePdfKitViewMode')
     expect(usePdfKitViewMode).toBeDefined()
     expect(typeof usePdfKitViewMode).toBe('function')
   })
 
   it('should return view mode controls', async () => {
-    const { usePdfKitViewMode } = await import('../src/runtime/composables/usePdfKitViewMode')
+    const { usePdfKitViewMode } = await import('../../src/runtime/composables/usePdfKitViewMode')
     const { viewMode, scrollMode, setViewMode, setScrollMode } = usePdfKitViewMode()
 
     expect(viewMode).toBeDefined()
@@ -78,7 +78,7 @@ describe('usePdfKitViewMode composable', () => {
   })
 
   it('should initialize with default values', async () => {
-    const { usePdfKitViewMode } = await import('../src/runtime/composables/usePdfKitViewMode')
+    const { usePdfKitViewMode } = await import('../../src/runtime/composables/usePdfKitViewMode')
     const { viewMode, scrollMode } = usePdfKitViewMode()
 
     expect(viewMode.value).toBe('single')
@@ -86,7 +86,7 @@ describe('usePdfKitViewMode composable', () => {
   })
 
   it('should change view mode', async () => {
-    const { usePdfKitViewMode } = await import('../src/runtime/composables/usePdfKitViewMode')
+    const { usePdfKitViewMode } = await import('../../src/runtime/composables/usePdfKitViewMode')
     const { viewMode, setViewMode } = usePdfKitViewMode()
 
     setViewMode('dual')
@@ -94,7 +94,7 @@ describe('usePdfKitViewMode composable', () => {
   })
 
   it('should change scroll mode', async () => {
-    const { usePdfKitViewMode } = await import('../src/runtime/composables/usePdfKitViewMode')
+    const { usePdfKitViewMode } = await import('../../src/runtime/composables/usePdfKitViewMode')
     const { scrollMode, setScrollMode } = usePdfKitViewMode()
 
     setScrollMode('horizontal')
@@ -104,13 +104,13 @@ describe('usePdfKitViewMode composable', () => {
 
 describe('usePdfKitRotation composable', () => {
   it('should be importable', async () => {
-    const { usePdfKitRotation } = await import('../src/runtime/composables/usePdfKitRotation')
+    const { usePdfKitRotation } = await import('../../src/runtime/composables/usePdfKitRotation')
     expect(usePdfKitRotation).toBeDefined()
     expect(typeof usePdfKitRotation).toBe('function')
   })
 
   it('should return rotation controls', async () => {
-    const { usePdfKitRotation } = await import('../src/runtime/composables/usePdfKitRotation')
+    const { usePdfKitRotation } = await import('../../src/runtime/composables/usePdfKitRotation')
     const { rotation, rotateClockwise, rotateCounterclockwise, setRotation } = usePdfKitRotation()
 
     expect(rotation).toBeDefined()
@@ -120,7 +120,7 @@ describe('usePdfKitRotation composable', () => {
   })
 
   it('should rotate clockwise by 90 degrees', async () => {
-    const { usePdfKitRotation } = await import('../src/runtime/composables/usePdfKitRotation')
+    const { usePdfKitRotation } = await import('../../src/runtime/composables/usePdfKitRotation')
     const { rotation, rotateClockwise } = usePdfKitRotation()
 
     rotateClockwise()
@@ -131,7 +131,7 @@ describe('usePdfKitRotation composable', () => {
   })
 
   it('should rotate counter-clockwise', async () => {
-    const { usePdfKitRotation } = await import('../src/runtime/composables/usePdfKitRotation')
+    const { usePdfKitRotation } = await import('../../src/runtime/composables/usePdfKitRotation')
     const { rotation, rotateCounterclockwise } = usePdfKitRotation()
 
     rotateCounterclockwise()
@@ -139,7 +139,7 @@ describe('usePdfKitRotation composable', () => {
   })
 
   it('should set rotation directly', async () => {
-    const { usePdfKitRotation } = await import('../src/runtime/composables/usePdfKitRotation')
+    const { usePdfKitRotation } = await import('../../src/runtime/composables/usePdfKitRotation')
     const { rotation, rotateClockwise, setRotation } = usePdfKitRotation()
 
     rotateClockwise()
@@ -151,13 +151,13 @@ describe('usePdfKitRotation composable', () => {
 
 describe('usePdfKitPageNavigation composable', () => {
   it('should be importable', async () => {
-    const { usePdfKitPageNavigation } = await import('../src/runtime/composables/usePdfKitPageNavigation')
+    const { usePdfKitPageNavigation } = await import('../../src/runtime/composables/usePdfKitPageNavigation')
     expect(usePdfKitPageNavigation).toBeDefined()
     expect(typeof usePdfKitPageNavigation).toBe('function')
   })
 
   it('should return navigation controls', async () => {
-    const { usePdfKitPageNavigation } = await import('../src/runtime/composables/usePdfKitPageNavigation')
+    const { usePdfKitPageNavigation } = await import('../../src/runtime/composables/usePdfKitPageNavigation')
     const { currentPage, nextPage, prevPage, goToPage } = usePdfKitPageNavigation({ totalPages: 10 })
 
     expect(currentPage).toBeDefined()
@@ -167,7 +167,7 @@ describe('usePdfKitPageNavigation composable', () => {
   })
 
   it('should navigate to next page', async () => {
-    const { usePdfKitPageNavigation } = await import('../src/runtime/composables/usePdfKitPageNavigation')
+    const { usePdfKitPageNavigation } = await import('../../src/runtime/composables/usePdfKitPageNavigation')
     const { currentPage, nextPage } = usePdfKitPageNavigation({ totalPages: 10 })
 
     nextPage()
@@ -175,7 +175,7 @@ describe('usePdfKitPageNavigation composable', () => {
   })
 
   it('should not go past total pages', async () => {
-    const { usePdfKitPageNavigation } = await import('../src/runtime/composables/usePdfKitPageNavigation')
+    const { usePdfKitPageNavigation } = await import('../../src/runtime/composables/usePdfKitPageNavigation')
     const { currentPage, goToPage, nextPage } = usePdfKitPageNavigation({ totalPages: 3 })
 
     goToPage(3)
@@ -184,7 +184,7 @@ describe('usePdfKitPageNavigation composable', () => {
   })
 
   it('should not go before page 1', async () => {
-    const { usePdfKitPageNavigation } = await import('../src/runtime/composables/usePdfKitPageNavigation')
+    const { usePdfKitPageNavigation } = await import('../../src/runtime/composables/usePdfKitPageNavigation')
     const { currentPage, prevPage } = usePdfKitPageNavigation({ totalPages: 10 })
 
     prevPage()
@@ -192,7 +192,7 @@ describe('usePdfKitPageNavigation composable', () => {
   })
 
   it('should go to first and last page', async () => {
-    const { usePdfKitPageNavigation } = await import('../src/runtime/composables/usePdfKitPageNavigation')
+    const { usePdfKitPageNavigation } = await import('../../src/runtime/composables/usePdfKitPageNavigation')
     const { currentPage, firstPage, lastPage } = usePdfKitPageNavigation({ totalPages: 10 })
 
     lastPage()

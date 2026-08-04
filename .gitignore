@@ -58,3 +58,6 @@ Temporary Items
 node_modules
 IMPLEMENTATION_STATUS.md
 
+# Nuxt test-utils generated config
+playground/.nuxtrc
+

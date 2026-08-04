@@ -2,11 +2,16 @@ import { fileURLToPath } from 'node:url'
 import { describe, it, expect } from 'vitest'
 import { setup, $fetch } from '@nuxt/test-utils/e2e'
 
-describe('nuxt-pdf-kit module', async () => {
-  await setup({
-    rootDir: fileURLToPath(new URL('./fixtures/basic', import.meta.url)),
-  })
+// setup() registers beforeAll/afterAll hooks at the file level, so it must
+// run at top level (NOT inside describe) to build + start the Nuxt server.
+await setup({
+  rootDir: fileURLToPath(new URL('../fixtures/basic', import.meta.url)),
+  // Building + starting the Nuxt server for the fixture can take a while,
+  // so give the internal beforeAll an explicit long timeout.
+  setupTimeout: 120_000,
+})
 
+describe('nuxt-pdf-kit module', () => {
   describe('SSR rendering', () => {
     it('renders the index page', async () => {
       const html = await $fetch('/')

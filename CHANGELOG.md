@@ -1,5 +1,40 @@
 # Changelog
 
+## v1.3.0 - 2026-08-04
+
+### 🔒 Security
+
+- Upgraded `nuxt` to `^4.5.1` — includes critical RCE security patch
+- Upgraded `@nuxt/devtools` to `^3.3.1` — includes critical RCE security patch
+- Upgraded `@nuxt/kit` and `@nuxt/schema` to `^4.5.1`
+
+### ⚡ Dependencies
+
+- Upgraded `@nuxt/ui` to `^4.10.0` (peer `^4.0.0`) — v4 full rewrite
+- Upgraded `@nuxt/test-utils` to `^4.1.0` and `vitest` to `^4.x`
+- Upgraded `@nuxt/eslint-config` to `^1.16.0`
+
+### 🧪 Testing
+
+- Added `vitest.config.ts` using `defineVitestProject`
+- Reorganized tests into `test/nuxt/` (e2e) and `test/unit/` (composables)
+- Fixed composable test imports for new directory structure
+
+### 🔧 Technical Details
+
+**Modified Files:**
+
+- `package.json` - Version bump to `1.3.0`, dependency upgrades
+- `src/module.ts` - `@nuxt/ui` module dependency requires `>=4.0.0`
+- `playground/package.json` - `nuxt` bumped to `^4.5.1`
+
+**New Files:**
+
+- `vitest.config.ts` - Vitest project configuration for unit + nuxt environments
+- `test/nuxt/basic.test.ts` - Moved e2e test
+- `test/nuxt/custom-toolbar.test.ts` - Moved e2e test
+- `test/unit/composables.test.ts` - Moved unit test
+
 ## v1.2.0 - 2026-01-15
 
 ### ✨ New Features

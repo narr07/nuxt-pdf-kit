@@ -78,7 +78,7 @@ export default defineNuxtModule<ModuleOptions>({
   // Module dependencies with proper configuration
   moduleDependencies: {
     '@nuxt/ui': {
-      version: '>=3.0.0',
+      version: '>=4.0.0',
     },
     '@vueuse/nuxt': {
       version: '>=10.0.0',

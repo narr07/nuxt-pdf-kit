@@ -2,7 +2,7 @@
 seo:
   title: Nuxt PDF Kit - Viewer PDF Lengkap untuk Nuxt
   description: Nuxt PDF Kit adalah modul viewer PDF yang powerful dengan integrasi Nuxt UI. Dengan fitur untuk melihat, mencari, zoom, rotasi, mencetak, dan mengunduh PDF dengan mudah.
-  ogImage: "https://nuxt-pdf-kit.pages.dev/og_image.png"
+  ogImage: "https://nuxtpdfkit.permadi.dev/og_image.png"
 ---
 
 ::u-page-hero
@@ -18,7 +18,7 @@ Lihat, cari, zoom, rotasi, cetak, dan unduh PDF dengan mudah.
   :::u-button
   ---
   size: xl
-  to: /en/getting-started/installation
+  to: /id/getting-started/installation
   trailing-icon: i-lucide-arrow-right
   ---
   Mulai Sekarang
