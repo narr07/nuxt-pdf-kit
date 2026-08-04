@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.3.1
+
+[compare changes](https://github.com/narr07/nuxt-pdf-kit/compare/v1.3.0...v1.3.1)
+
+### 🏡 Chore
+
+- Trigger deploy with new build command ([c29f9bb](https://github.com/narr07/nuxt-pdf-kit/commit/c29f9bb))
+- Trigger build with complete root install ([f531684](https://github.com/narr07/nuxt-pdf-kit/commit/f531684))
+
+### ❤️ Contributors
+
+- Dinar, Permadi ([@narr07](https://github.com/narr07))
+
 ## v1.3.0 - 2026-08-04
 
 ### 🔒 Security
