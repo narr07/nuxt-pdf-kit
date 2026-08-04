@@ -79,7 +79,7 @@
     "@vueuse/core": "^13.5.0",
     "@vueuse/nuxt": "^14.4.0",
     "defu": "^6.1.4",
-    "pdfjs-dist": "^5.4.530"
+    "pdfjs-dist": "^6.2.108"
   },
   "peerDependencies": {
     "@nuxt/ui": "^4.0.0",
