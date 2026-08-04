@@ -77,13 +77,13 @@
     "@nuxt/kit": "^4.5.1",
     "@nuxt/ui": "^4.0.0",
     "@vueuse/core": "^13.5.0",
-    "@vueuse/nuxt": "^13.0.0",
+    "@vueuse/nuxt": "^14.4.0",
     "defu": "^6.1.4",
     "pdfjs-dist": "^5.4.530"
   },
   "peerDependencies": {
     "@nuxt/ui": "^4.0.0",
-    "@vueuse/nuxt": "^13.0.0"
+    "@vueuse/nuxt": "^14.4.0"
   },
   "peerDependenciesMeta": {
     "@nuxt/ui": {
