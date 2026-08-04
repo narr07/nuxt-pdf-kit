@@ -7,13 +7,13 @@
     "build": "NODE_OPTIONS=--max-old-space-size=8192 nuxt prepare --extends docus && nuxt build --extends docus"
   },
   "dependencies": {
-    "@nuxt/eslint": "1.12.1",
+    "@nuxt/eslint": "1.16.0",
     "@nuxtjs/i18n": "^10.2.1",
     "better-sqlite3": "^13.0.2",
     "docus": "latest",
     "eslint": "^9.0.0",
     "nuxt": "^4.2.2",
     "nuxt-pdf-kit": "1.2.0",
-    "nuxt-studio": "1.0.0"
+    "nuxt-studio": "1.7.0"
   }
 }
