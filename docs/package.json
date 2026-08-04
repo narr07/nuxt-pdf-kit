@@ -2,7 +2,9 @@
   "name": "docs",
   "scripts": {
     "dev": "nuxt dev --extends docus",
-    "build": "NODE_OPTIONS=--max-old-space-size=8192 nuxt build --extends docus"
+    "postinstall": "nuxt prepare --extends docus",
+    "prepare": "nuxt prepare --extends docus",
+    "build": "NODE_OPTIONS=--max-old-space-size=8192 nuxt prepare --extends docus && nuxt build --extends docus"
   },
   "dependencies": {
     "@nuxt/eslint": "1.12.1",
