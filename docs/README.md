@@ -1,4 +1,4 @@
-# Docus i18n Starter For site
+# Docus i18n Starter
 
 > A beautiful, internationalized starter for creating multi-language documentation with Docus
 
