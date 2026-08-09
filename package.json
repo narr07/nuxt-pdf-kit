@@ -74,7 +74,7 @@
     "docs:build": "npm run build --prefix docs"
   },
   "dependencies": {
-    "@nuxt/kit": "^4.5.1",
+    "@nuxt/kit": "^4.5.2",
     "@nuxt/ui": "^4.0.0",
     "@vueuse/core": "^13.5.0",
     "@vueuse/nuxt": "^14.4.0",
@@ -95,16 +95,16 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "^3.3.1",
-    "@nuxt/eslint-config": "^1.16.0",
+    "@nuxt/eslint-config": "^1.17.0",
     "@nuxt/module-builder": "^1.0.2",
-    "@nuxt/schema": "^4.5.1",
+    "@nuxt/schema": "^4.5.2",
     "@nuxt/test-utils": "^4.1.0",
     "@types/node": "latest",
     "@types/pdfjs-dist": "^2.10.377",
     "changelogen": "^0.6.2",
     "eslint": "^9.39.2",
     "happy-dom": "^20.11.1",
-    "nuxt": "^4.5.1",
+    "nuxt": "^4.5.2",
     "typescript": "~5.9.3",
     "vitest": "^4.1.0",
     "vue-tsc": "^3.2.1"
