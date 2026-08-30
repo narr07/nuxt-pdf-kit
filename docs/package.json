@@ -11,7 +11,7 @@
     "@nuxtjs/i18n": "^10.2.1",
     "better-sqlite3": "^13.0.2",
     "docus": "latest",
-    "eslint": "^9.0.0",
+    "eslint": "^10.9.1",
     "nuxt": "^4.2.2",
     "nuxt-pdf-kit": "1.2.0",
     "nuxt-studio": "1.0.0"
