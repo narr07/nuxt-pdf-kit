@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.3.2
+
+[compare changes](https://github.com/narr07/nuxt-pdf-kit/compare/v1.3.1...v1.3.2)
+
+### 📦 Build
+
+- **deps:** Bump @vueuse/nuxt from 13.9.0 to 14.4.0 ([5274569](https://github.com/narr07/nuxt-pdf-kit/commit/5274569))
+- **deps:** Bump better-sqlite3 from 12.11.1 to 13.0.2 in /docs ([9bd3c9e](https://github.com/narr07/nuxt-pdf-kit/commit/9bd3c9e))
+
+### 🏡 Chore
+
+- Update pdfjs-dist to version 6.3.289 and adjust document loading parameters ([2d66e7b](https://github.com/narr07/nuxt-pdf-kit/commit/2d66e7b))
+
+### ❤️ Contributors
+
+- Dinar, Permadi ([@narr07](https://github.com/narr07))
+
 ## v1.3.1
 
 [compare changes](https://github.com/narr07/nuxt-pdf-kit/compare/v1.3.0...v1.3.1)
