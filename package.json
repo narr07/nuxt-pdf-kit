@@ -79,7 +79,7 @@
     "@vueuse/core": "^13.5.0",
     "@vueuse/nuxt": "^14.4.0",
     "defu": "^6.1.4",
-    "pdfjs-dist": "^5.4.530"
+    "pdfjs-dist": "^6.3.289"
   },
   "peerDependencies": {
     "@nuxt/ui": "^4.0.0",
@@ -100,7 +100,6 @@
     "@nuxt/schema": "^4.5.1",
     "@nuxt/test-utils": "^4.1.0",
     "@types/node": "latest",
-    "@types/pdfjs-dist": "^2.10.377",
     "changelogen": "^0.6.2",
     "eslint": "^9.39.2",
     "happy-dom": "^20.11.1",
@@ -108,5 +107,8 @@
     "typescript": "~5.9.3",
     "vitest": "^4.1.0",
     "vue-tsc": "^3.2.1"
+  },
+  "overrides": {
+    "esbuild": "^0.28.1"
   }
 }

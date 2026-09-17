@@ -1085,7 +1085,7 @@ const loadPdf = async (url: string) => {
   loading.value = true
   error.value = null
   try {
-    const loadingTask = pdfjsLib.getDocument(url)
+    const loadingTask = pdfjsLib.getDocument({ url })
     const doc = await loadingTask.promise
     pdfDoc.value = doc
     pages.value = Array.from({ length: doc.numPages }, (_, i) => i + 1)

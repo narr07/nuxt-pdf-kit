@@ -38,7 +38,7 @@ export function usePdfKitDocument(options: UsePdfKitDocumentOptions = {}) {
     progress.value = 0
 
     try {
-      const source = typeof src === 'string' ? src : src
+      const source = typeof src === 'string' ? { url: src } : src
       const loadingTask = pdfjsLib.getDocument(source)
 
       loadingTask.onProgress = (progressData: { loaded: number, total: number }) => {
@@ -77,7 +77,7 @@ export function usePdfKitDocument(options: UsePdfKitDocumentOptions = {}) {
 
   const destroy = () => {
     if (pdfDoc.value) {
-      pdfDoc.value.destroy()
+      pdfDoc.value.loadingTask.destroy()
       pdfDoc.value = null
     }
   }
