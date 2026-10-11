@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
 
   // Extract ID from path: remove /pdf-proxy/gdrive/ prefix and .pdf suffix
   const match = path.match(/\/pdf-proxy\/gdrive\/([^/]+?)(?:\.pdf)?$/)
-  const rawId = match ? match[1] : ''
+  const rawId = match?.[1] ?? ''
 
   // Debug logging
   console.log('[nuxt-pdf-kit] Debug - event.path:', path)

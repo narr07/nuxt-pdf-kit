@@ -466,6 +466,7 @@ import { ref, shallowRef, computed, watch, onMounted, onBeforeUnmount, nextTick 
 import { useFullscreen, useLocalStorage, onKeyStroke, useDevicePixelRatio, useElementSize, useDebounceFn } from '@vueuse/core'
 import { useRuntimeConfig, useColorMode } from '#imports'
 import type * as PDFJS from 'pdfjs-dist'
+import type { DropdownMenuItem } from '@nuxt/ui'
 import { usePdfKitViewMode } from '../composables/usePdfKitViewMode'
 import { usePdfKitSearch } from '../composables/usePdfKitSearch'
 import { usePdfKitZoom, type ZoomLevel } from '../composables/usePdfKitZoom'
@@ -876,7 +877,7 @@ const scrollToPage = (pageNum: number) => {
 // Scroll only happens when explicitly called via goToPageAndScroll
 
 // More options dropdown items for Nuxt UI
-const moreOptionsItems = computed(() => [
+const moreOptionsItems = computed<DropdownMenuItem[][]>(() => [
   [
     {
       label: 'Single page',

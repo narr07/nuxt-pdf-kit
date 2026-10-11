@@ -85,7 +85,7 @@ const render = async () => {
             const isCurrent = isCurrentPage && matchIndexInPage === props.currentMatchIndexInPage
             const highlightClass = isCurrent ? 'npk-highlight npk-highlight-current' : 'npk-highlight'
 
-            resultHtml += `<mark class="${highlightClass}">${escapeHtml(match[1])}</mark>`
+            resultHtml += `<mark class="${highlightClass}">${escapeHtml(match[1] ?? '')}</mark>`
             lastIndex = searchRegex.lastIndex
             matchIndexInPage++
           }
