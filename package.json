@@ -74,12 +74,12 @@
     "docs:build": "npm run build --prefix docs"
   },
   "dependencies": {
-    "@nuxt/kit": "^4.5.1",
+    "@nuxt/kit": "^4.6.1",
     "@nuxt/ui": "^4.0.0",
-    "@vueuse/core": "^13.5.0",
+    "@vueuse/core": "^14.4.0",
     "@vueuse/nuxt": "^14.4.0",
     "defu": "^6.1.4",
-    "pdfjs-dist": "^6.3.289"
+    "pdfjs-dist": "^6.4.299"
   },
   "peerDependencies": {
     "@nuxt/ui": "^4.0.0",
@@ -94,19 +94,19 @@
     }
   },
   "devDependencies": {
-    "@nuxt/devtools": "^3.3.1",
-    "@nuxt/eslint-config": "^1.16.0",
-    "@nuxt/module-builder": "^1.0.2",
-    "@nuxt/schema": "^4.5.1",
-    "@nuxt/test-utils": "^4.1.0",
+    "@nuxt/devtools": "^3.4.2",
+    "@nuxt/eslint-config": "^1.17.0",
+    "@nuxt/module-builder": "^1.0.3",
+    "@nuxt/schema": "^4.6.1",
+    "@nuxt/test-utils": "^4.3.3",
     "@types/node": "latest",
     "changelogen": "^0.6.2",
-    "eslint": "^9.39.2",
-    "happy-dom": "^20.11.1",
-    "nuxt": "^4.5.1",
+    "eslint": "^10.12.0",
+    "happy-dom": "^20.14.6",
+    "nuxt": "^4.6.1",
     "typescript": "~5.9.3",
-    "vitest": "^4.1.0",
-    "vue-tsc": "^3.2.1"
+    "vitest": "^5.0.3",
+    "vue-tsc": "^3.3.13"
   },
   "overrides": {
     "esbuild": "^0.28.1"
