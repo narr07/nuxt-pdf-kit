@@ -1,4 +1,4 @@
-import { defineNuxtModule, addPlugin, createResolver, addComponent, addTypeTemplate } from '@nuxt/kit'
+import { defineNuxtModule, addServerHandler, createResolver, addComponent, addTypeTemplate } from '@nuxt/kit'
 import { defu } from 'defu'
 
 // Re-export types for user convenience
@@ -44,6 +44,12 @@ export interface ModuleOptions {
    * Toolbar configuration - control which buttons are visible
    */
   toolbar?: ToolbarOptions
+  /**
+   * Register the Google Drive proxy route (`/pdf-proxy/gdrive/:id`).
+   * Set to `false` if you do not load PDFs with `provider="gdrive"`.
+   * @default true
+   */
+  gdriveProxy?: boolean
 }
 
 // Default toolbar options
@@ -67,13 +73,14 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: 'pdfKit',
     // Compatibility constraints
     compatibility: {
-      // Supports Nuxt 3.x and 4.x
+      // Supports Nuxt 3.x, 4.x and 5.x
       nuxt: '>=3.0.0',
     },
   },
   // Default configuration options of the Nuxt module
   defaults: {
     toolbar: defaultToolbar,
+    gdriveProxy: true,
   },
   // Module dependencies with proper configuration
   moduleDependencies: {
@@ -96,20 +103,18 @@ export default defineNuxtModule<ModuleOptions>({
       { toolbar: toolbarConfig },
     )
 
-    // Add plugin
-    addPlugin(resolver.resolve('./runtime/plugin'))
-
-    // Add server routes for providers
-    nuxt.hook('nitro:config', (nitroConfig) => {
-      nitroConfig.handlers = nitroConfig.handlers || []
-
-      // Google Drive proxy route
-      // Match both /pdf-proxy/gdrive/ID and /pdf-proxy/gdrive/ID.pdf
-      nitroConfig.handlers.push({
+    // Google Drive proxy route, matching /pdf-proxy/gdrive/ID and /pdf-proxy/gdrive/ID.pdf.
+    // It ships two entries: one written against `nuxt/server`, which runs on any server
+    // builder (Nuxt 4.6+ and Nuxt 5), and a `.legacy` one for Nitro v2 and h3 v1.
+    if (options.gdriveProxy !== false) {
+      addServerHandler({
         route: '/pdf-proxy/gdrive/**',
-        handler: resolver.resolve('./runtime/server/routes/pdf-proxy/gdrive/[id]'),
+        handler: {
+          nuxt: resolver.resolve('./runtime/server/routes/pdf-proxy/gdrive/[id]'),
+          nitro2: resolver.resolve('./runtime/server/routes/pdf-proxy/gdrive/[id].legacy'),
+        },
       })
-    })
+    }
 
     // Add components with client-only mode for SSR support
     addComponent({

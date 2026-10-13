@@ -19,6 +19,7 @@ Building a PDF viewer in Nuxt requires dealing with PDF.js complexity, SSR issue
 - ⚡ **SSR Compatible** - Works out of the box with Nuxt's server-side rendering
 - 🔧 **Zero Config** - Auto-installs dependencies (@nuxt/ui, @vueuse/nuxt)
 - 📱 **Responsive** - Mobile-friendly with adaptive toolbar
+- 🧩 **Nuxt 3, 4 and 5** - One package runs on Nuxt 3, Nuxt 4 and Nuxt 5
 - 🎯 **Feature Complete** - Search, zoom, rotate, print, download, and more
 
 ## Features
@@ -102,7 +103,7 @@ Load PDFs from different sources:
   <NuxtPdfKit src="/sample.pdf" />
 
   <!-- Google Drive -->
-  <NuxtPdfKit provider="gdrive" src="1bAsv95pTaBiHyGiWFIa-zebT31Al_0tu" />
+  <NuxtPdfKit provider="gdrive" src="1kgN3QYrPhgeyoIehoTcarfwcIikKHIvE" />
 
   <!-- Custom CDN/Proxy -->
   <NuxtPdfKit

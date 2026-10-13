@@ -40,8 +40,8 @@ function transformCustom(src: string, config?: ProviderConfig): string {
  * @example
  * ```ts
  * // Google Drive
- * const url = usePdfKitProvider('gdrive', '1bAsv95pTaBiHyGiWFIa-zebT31Al_0tu')
- * // Returns: '/pdf-proxy/gdrive/1bAsv95pTaBiHyGiWFIa-zebT31Al_0tu.pdf'
+ * const url = usePdfKitProvider('gdrive', '1kgN3QYrPhgeyoIehoTcarfwcIikKHIvE')
+ * // Returns: '/pdf-proxy/gdrive/1kgN3QYrPhgeyoIehoTcarfwcIikKHIvE.pdf'
  *
  * // Custom provider
  * const url = usePdfKitProvider('custom', 'file-123', { baseUrl: '/cdn' })
