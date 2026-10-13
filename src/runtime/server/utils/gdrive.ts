@@ -79,7 +79,6 @@ export async function fetchGdrivePdf(pathname: string, fail: (error: GdriveError
     headers: {
       'Content-Type': 'application/pdf',
       'Cache-Control': 'public, max-age=86400', // Cache for 24 hours
-      'Access-Control-Allow-Origin': '*',
       'Content-Disposition': `inline; filename="${fileId}.pdf"`,
     },
   }

@@ -22,6 +22,12 @@ describe.each([
     expect(await res.text()).toBe('%PDF-1.7 abcdefghijkl')
   })
 
+  it('does not open the proxy to other origins', async () => {
+    const res = await fetch(`${base}/abcdefghijkl.pdf`)
+
+    expect(res.headers.get('access-control-allow-origin')).toBeNull()
+  })
+
   it('accepts an ID without the .pdf suffix', async () => {
     const res = await fetch(`${base}/abcdefghijkl`)
 
