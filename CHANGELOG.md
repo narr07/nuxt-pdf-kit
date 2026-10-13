@@ -1,5 +1,31 @@
 # Changelog
 
+## v1.4.0
+
+[compare changes](https://github.com/narr07/nuxt-pdf-kit/compare/v1.3.2...v1.4.0)
+
+### 🚀 Enhancements
+
+- Support nuxt v5 ([f8a5596](https://github.com/narr07/nuxt-pdf-kit/commit/f8a5596))
+
+### 🩹 Fixes
+
+- **types:** Resolve type errors in viewer, text layer and gdrive proxy ([1412783](https://github.com/narr07/nuxt-pdf-kit/commit/1412783))
+- Drop the wildcard CORS header from the Google Drive proxy ([63056f7](https://github.com/narr07/nuxt-pdf-kit/commit/63056f7))
+
+### 📖 Documentation
+
+- Add live examples and fix the docs install ([a5d88fe](https://github.com/narr07/nuxt-pdf-kit/commit/a5d88fe))
+
+### 🏡 Chore
+
+- **release:** V1.3.2 ([28b125d](https://github.com/narr07/nuxt-pdf-kit/commit/28b125d))
+- Upgrade to Nuxt 4.6 and update dependencies ([bfaf5f2](https://github.com/narr07/nuxt-pdf-kit/commit/bfaf5f2))
+
+### ❤️ Contributors
+
+- Dinar, Permadi ([@narr07](https://github.com/narr07))
+
 ## v1.3.2
 
 [compare changes](https://github.com/narr07/nuxt-pdf-kit/compare/v1.3.1...v1.3.2)
