@@ -75,14 +75,14 @@
   },
   "dependencies": {
     "@nuxt/kit": "^4.6.1",
-    "@nuxt/ui": "^4.0.0",
+    "@nuxt/ui": "^4.12.0",
     "@vueuse/core": "^14.4.0",
     "@vueuse/nuxt": "^14.4.0",
     "defu": "^6.1.4",
     "pdfjs-dist": "^6.4.299"
   },
   "peerDependencies": {
-    "@nuxt/ui": "^4.0.0",
+    "@nuxt/ui": "^4.12.0",
     "@vueuse/nuxt": "^14.4.0"
   },
   "peerDependenciesMeta": {
@@ -94,7 +94,7 @@
     }
   },
   "devDependencies": {
-    "@nuxt/devtools": "^3.4.2",
+    "@nuxt/devtools": "^3.4.3",
     "@nuxt/eslint-config": "^1.17.0",
     "@nuxt/module-builder": "^1.0.3",
     "@nuxt/schema": "^4.6.1",
